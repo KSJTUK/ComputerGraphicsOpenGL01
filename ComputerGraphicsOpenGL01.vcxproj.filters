@@ -18,6 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="call_backs.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -26,8 +32,8 @@
     <ClInclude Include="call_backs.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="call_backs.cpp">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="Engine.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

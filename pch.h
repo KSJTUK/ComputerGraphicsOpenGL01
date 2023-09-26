@@ -9,15 +9,14 @@
 #include <vector>
 
 // 사용자 정의 라이브러리
-#include "call_backs.h"
 
 // 클래스, 구조체
 // 생성할 윈도우의ㅡ 정보를 담을 구조체 정의
 typedef struct WindowInfo {
 	int x;
 	int y;
-	size_t width;
-	size_t height;
+	int width;
+	int height;
 	float fWidth;
 	float fHeight;
 	char* windowTitle;

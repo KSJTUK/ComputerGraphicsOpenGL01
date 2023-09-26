@@ -1,4 +1,5 @@
-ï»¿#include "Engine.h"
+#include "Engine.h"
+#include "call_backs.h"
 
 Engine::Engine() {
 	m_windowInfo.x = 100;
@@ -7,18 +8,58 @@ Engine::Engine() {
 	m_windowInfo.height = 600;
 	m_windowInfo.fWidth = static_cast<float>(m_windowInfo.width);
 	m_windowInfo.fHeight = static_cast<float>(m_windowInfo.height);
+
+	m_windowTitle = "OpenGL_PG1";
 }
 
 Engine::~Engine() {
-	// ë™ì í• ë‹¹ ê°ì²´ë“¤ ë©”ëª¨ë¦¬ í• ë‹¹ í•´ì œ
-	if (m_timer) delete m_timer;
-	m_timer = nullptr;
-	if (m_shader) delete m_shader;
-	m_shader = nullptr;
+	// µ¿ÀûÇÒ´ç °´Ã¼µé ¸Ş¸ğ¸® ÇÒ´ç ÇØÁ¦
+	//if (m_timer) delete m_timer;
+	//m_timer = nullptr;
+	//if (m_shader) delete m_shader;
+	//m_shader = nullptr;
 }
 
-void Engine::Init() {
+// Äİ¹éÇÔ¼öµé µî·Ï
+void Engine::SubscribeCallbacks() {
+	glutDisplayFunc(renderFunc);
+	glutReshapeFunc(reshapeFunc);
+	glutKeyboardFunc(keyboardFunc);
+	glutKeyboardUpFunc(keyboardUpFunc);
+	glutMouseFunc(mouseFunc);
+	glutMotionFunc(mouseMotion);
+	glutPassiveMotionFunc(mousePassiveMotion);
+	glutIdleFunc(idleFunc);
+	glutSpecialFunc(specialkeyFunc);
+}
 
+
+void Engine::Init(int* argc, char** argv) {
+	// glut¶óÀÌºê·¯¸® ÃÊ±âÈ­
+	glutInit(argc, argv);
+
+	// À©µµ¿ì Ãâ·Â¸ğµå ¼³Á¤(´õºí¹öÆÛ¸µ, RGBA)
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+	// À©µµ¿ì Å©±â, ÁÂÇ¥ ¼³Á¤
+	glutInitWindowPosition(m_windowInfo.x, m_windowInfo.y);
+	glutInitWindowSize(m_windowInfo.width, m_windowInfo.height);
+
+	// À©µµ¿ì »ı¼º
+	glutCreateWindow(m_windowTitle.c_str());
+
+	// glew ¶óÀÌºê·¯¸® ÃÊ±âÈ­
+	glewExperimental = GL_TRUE;
+	try {
+		if (glewInit() != GLEW_OK) {
+			throw "GLEW ¶óÀÌºê·¯¸® ÃÊ±âÈ­ ½ÇÆĞ";
+		}
+	}
+	catch (std::string expn) {
+		std::cerr << expn << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
+	SubscribeCallbacks();
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -31,18 +72,6 @@ void Engine::ReSizeWindow(int w, int h) {
 void Engine::Update() {
 }
 
-void Engine::Logic() {
-
-}
-
-void Engine::SubscribeCallbacks() {
-	glutDisplayFunc(renderFunc);
-	glutReshapeFunc(reshapeFunc);
-	glutKeyboardFunc(keyboardFunc);
-	glutKeyboardUpFunc(keyboardUpFunc);
-	glutMouseFunc(mouseFunc);
-	glutMotionFunc(mouseMotion);
-	glutPassiveMotionFunc(mousePassiveMotion);
-	glutIdleFunc(idleFunc);
-	glutSpecialFunc(specialkeyFunc);
+void Engine::Loop() {
+	glutMainLoop();
 }
