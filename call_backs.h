@@ -1,31 +1,28 @@
-#pragma once
+ï»¿#pragma once
 
-// ±×¸®±â ÇÔ¼ö GLvoid(*drawFunc)(GLvoid)
+// ê·¸ë¦¬ê¸° ì½œë°±í•¨ìˆ˜
 void renderFunc();
 
-// »çÀÌÁî º¯È­ ´ëÀÀ ÇÔ¼ö GLvoid(*reshapeFunc)(int, int)
+// ìœˆë„ìš° ì‚¬ì´ì¦ˆ ë³€ê²½ ì²˜ë¦¬ í•¨ìˆ˜
 void reshapeFunc(int, int);
 
-// idle time ÇÔ¼ö GLvoid(*idleFunc)(GLvoid)
+// idle time í•¨ìˆ˜
 void idleFunc();
 
-// Å°º¸µå ÀÔ·Â Ã³¸® ÇÔ¼ö GLvoid(*keyboardFunc)(unsigned char, int, int, int)
+// í‚¤ë³´ë“œ ì…ë ¥ì²˜ë¦¬ í•¨ìˆ˜
 void keyboardFunc(unsigned char, int, int, int);
 
-// Å°º¸µå Æ¯¼ö Å° Ã³¸® ÇÔ¼ö
+// í‚¤ë³´ë“œ íŠ¹ìˆ˜í‚¤ ì²˜ë¦¬í•¨ìˆ˜
 void specialkeyFunc(int, int, int);
 
-// ¸¶¿ì½º ÀÔ·Â Ã³¸®ÇÔ¼ö
+// ë§ˆìš°ìŠ¤ ì…ë ¥ ì²˜ë¦¬í•¨ìˆ˜
 void mouseFunc(int, int, int, int);
 void mouseLeftDown(int, int, int);
 void mouseRightDown(int, int, int);
 
-// ¸¶¿ì½º ¸ğ¼Ç ÇÔ¼ö (Å¬¸¯: motion, ±âº» passiveMotion)
+// ë§ˆìš°ìŠ¤ ëª¨ì…˜í•¨ìˆ˜
 void mouseMotion(int, int);
 void mousePassiveMotion(int, int);
 
-// ¸¶¿ì½º ÈÙ ÀÔ·Â Ã³¸®ÇÔ¼ö
+// ë§ˆìš°ìŠ¤ íœ  ì…ë ¥í•¨ìˆ˜
 void mouseWheel(int, int, int);
-
-// Å¸ÀÌ¸Ó ÇÔ¼ö
-// deltaTime »ç¿ë¿¹Á¤

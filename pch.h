@@ -1,13 +1,18 @@
-#include <gl/glew.h>
+ï»¿#include <gl/glew.h>
 #include <gl/freeglut.h>
 #include <gl/freeglut_ext.h>
 
-// ÀÚÁÖ ¾²ÀÌ´Â Å¬·¡½º, Àü¿ª ÇÔ¼öµéÀ» ¼±¾ð, Á¤ÀÇÇÒ ÆÄÀÏ
+// ìžì£¼ì“°ì´ëŠ” í´ëž˜ìŠ¤, ì „ì—­í•¨ìˆ˜, ë¼ì´ë¸ŒëŸ¬ë¦¬ë“±ì„ ì •ì˜, ì„ ì–¸í•  íŒŒì¼
+// í‘œì¤€ ë¼ì´ë¸ŒëŸ¬ë¦¬
 #include <iostream>
 #include <string>
 #include <vector>
 
-// »ý¼ºÇÒ À©µµ¿ìÀÇ Á¤º¸µéÀ» ÀúÀåÇÒ ±¸Á¶Ã¼ Á¤ÀÇ
+// ì‚¬ìš©ìž ì •ì˜ ë¼ì´ë¸ŒëŸ¬ë¦¬
+#include "call_backs.h"
+
+// í´ëž˜ìŠ¤, êµ¬ì¡°ì²´
+// ìƒì„±í•  ìœˆë„ìš°ì˜ã…¡ ì •ë³´ë¥¼ ë‹´ì„ êµ¬ì¡°ì²´ ì •ì˜
 typedef struct WindowInfo {
 	int x;
 	int y;
