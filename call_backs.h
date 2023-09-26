@@ -10,7 +10,8 @@ void reshapeFunc(int, int);
 void idleFunc();
 
 // 키보드 입력처리 함수
-void keyboardFunc(unsigned char, int, int, int);
+void keyboardFunc(unsigned char, int, int);
+void keyboardUpFunc(unsigned char, int, int);
 
 // 키보드 특수키 처리함수
 void specialkeyFunc(int, int, int);

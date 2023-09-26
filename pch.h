@@ -20,4 +20,5 @@ typedef struct WindowInfo {
 	size_t height;
 	float fWidth;
 	float fHeight;
+	char* windowTitle;
 } WIN_INFO;

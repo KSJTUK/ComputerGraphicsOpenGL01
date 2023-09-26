@@ -30,34 +30,38 @@ void idleFunc()
 	// Timer Update
 }
 
-void keyboardFunc(unsigned char, int, int, int)
+void keyboardFunc(unsigned char key, int x, int y)
 {
 }
 
-void specialkeyFunc(int, int, int)
+void keyboardUpFunc(unsigned char key, int x, int y)
 {
 }
 
-void mouseFunc(int, int, int, int)
+void specialkeyFunc(int key, int x, int y)
 {
 }
 
-void mouseLeftDown(int, int, int)
+void mouseFunc(int button, int state, int x, int y)
 {
 }
 
-void mouseRightDown(int, int, int)
+void mouseLeftDown(int state, int x, int y)
 {
 }
 
-void mouseMotion(int, int)
+void mouseRightDown(int state, int x, int y)
 {
 }
 
-void mousePassiveMotion(int, int)
+void mouseMotion(int x, int y)
 {
 }
 
-void mouseWheel(int, int, int)
+void mousePassiveMotion(int x, int y)
+{
+}
+
+void mouseWheel(int dir, int x, int y)
 {
 }
