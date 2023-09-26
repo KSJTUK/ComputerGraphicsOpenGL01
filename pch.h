@@ -5,6 +5,7 @@
 // 자주쓰이는 클래스, 전역함수, 라이브러리등을 정의, 선언할 파일
 // 표준 라이브러리
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 
