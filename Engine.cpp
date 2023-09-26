@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "call_backs.h"
+#include "Shader.h"
 
 Engine::Engine() {
 	m_windowInfo.x = 100;
@@ -60,6 +61,11 @@ void Engine::Init(int* argc, char** argv) {
 	}
 
 	SubscribeCallbacks();
+
+	// 쉐이더 프로그램 초기화
+	m_shader = new Shader{ };
+	m_shader->RoadVertexShaderFile("vertex.glsl");
+	m_shader->RoadVertexShaderFile("fragment.glsl");
 }
 
 void Engine::ReSizeWindow(int w, int h) {
