@@ -6,6 +6,7 @@
 // 표준 라이브러리
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 

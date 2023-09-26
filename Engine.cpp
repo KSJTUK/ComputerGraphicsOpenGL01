@@ -64,8 +64,7 @@ void Engine::Init(int* argc, char** argv) {
 
 	// 쉐이더 프로그램 초기화
 	m_shader = new Shader{ };
-	m_shader->RoadVertexShaderFile("vertex.glsl");
-	m_shader->RoadVertexShaderFile("fragment.glsl");
+	m_shader->CreateShaderProgram();
 }
 
 void Engine::ReSizeWindow(int w, int h) {
