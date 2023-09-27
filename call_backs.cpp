@@ -30,8 +30,8 @@ void reshapeFunc(int x, int y)
 void idleFunc()
 {
 	// Frame객체의 Update함수 사용
-	// Game Logic Update
-	// Timer Update
+	e.Update();
+	glutPostRedisplay();
 }
 
 void keyboardFunc(unsigned char key, int x, int y)

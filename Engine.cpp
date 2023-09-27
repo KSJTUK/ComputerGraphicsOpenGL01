@@ -3,6 +3,7 @@
 #include "call_backs.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "Timer.h"
 #include "vertex_info.h"
 
 Engine::Engine() {
@@ -68,6 +69,10 @@ void Engine::Init(int* argc, char** argv) {
 
 	SubscribeCallbacks();
 
+	// 타이머 초기화
+	m_timer = new Timer{ };
+	m_timer->Init();
+
 	// 쉐이더 프로그램 초기화
 	m_shader = new Shader{ };
 	m_shader->CreateShaderProgram();
@@ -87,6 +92,8 @@ void Engine::ReSizeWindow(int w, int h) {
 }
 
 void Engine::Update() {
+	m_timer->Update();
+	std::cout << m_timer->GetDeltaTime() << std::endl;
 }
 
 void Engine::Render() {
