@@ -1,7 +1,7 @@
 ﻿#include "Mesh.h"
 #include "pch.h"
 
-Mesh::Mesh() { }
+Mesh::Mesh() : m_drawMode{ GL_TRIANGLES } { }
 
 Mesh::~Mesh() { }
 
@@ -43,8 +43,12 @@ void Mesh::SetIndexBuffer(unsigned int* indexBuffer, size_t bufferSize) {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, bufferSize * sizeof(unsigned int), indexBuffer, GL_STATIC_DRAW);
 }
 
+void Mesh::SetDrawMode(unsigned int mode) {
+	m_drawMode = mode;
+}
+
 void Mesh::Render() {
 	// shaderProgram 에서 UseProgram을 활성화 했다는 가정하에 수행
 	glBindVertexArray(m_vertexArrayObject);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(m_drawMode, 6, GL_UNSIGNED_INT, 0);
 }
