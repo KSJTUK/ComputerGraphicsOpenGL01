@@ -20,7 +20,7 @@ private:
 
 public:
 	void Init();
-	void SetVertexs(float* vertexBuffer, size_t bufferSize, size_t vertexSize, size_t stride);
-	void SetIndexBuffer(float* indexBuffer, size_t bufferSize);
+	void SetVertexs(float* vertexBuffer, size_t bufferSize);
+	void SetIndexBuffer(unsigned int* indexBuffer, size_t bufferSize);
 	void Render();
 };
