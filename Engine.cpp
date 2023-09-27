@@ -80,8 +80,6 @@ void Engine::Init(int* argc, char** argv) {
 	// 메쉬 초기화
 	m_mesh = new Mesh{ };
 	m_mesh->Init();
-	m_mesh->SetVertexs(vPositionList, sizeof(vPositionList) / sizeof(float));
-	m_mesh->SetIndexBuffer(index, sizeof(index) / sizeof(float));
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -93,11 +91,14 @@ void Engine::ReSizeWindow(int w, int h) {
 
 void Engine::Update() {
 	m_timer->Update();
-	std::cout << m_timer->GetDeltaTime() << std::endl;
+
+	m_mesh->SetVertexs(vPositionList, sizeof(vPositionList) / sizeof(float));
+	m_mesh->SetIndexBuffer(index, sizeof(index) / sizeof(float));
 }
 
 void Engine::Render() {
 	m_shader->UseProgram();
+
 	m_mesh->Render();
 }
 

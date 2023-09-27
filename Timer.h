@@ -12,9 +12,9 @@ private:
 	union _LARGE_INTEGER* m_prev{ nullptr };
 
 	// 시간 배속 설정 변수
-	float m_timeScale;
+	float m_timeScale{ 1.f };
 	// 델타 타임
-	float m_deltaTime;
+	float m_deltaTime{ };
 	// 시작부터 흐른 시간을 저장할 변수
 	float m_timeElapsed{ 0.0f };
 	// 프레임 관련 변수
