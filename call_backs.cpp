@@ -1,5 +1,9 @@
-﻿#include "pch.h"
+﻿#include "Engine.h"
+#include "pch.h"
 #include "call_backs.h"
+#include "Shader.h"
+
+extern class Engine e;
 
 // 그리기 콜백함수
 void renderFunc()
@@ -8,7 +12,7 @@ void renderFunc()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// rendering function
-	// Frame객체의 Rendering 함수 사용
+	e.Render();
 
 	glutSwapBuffers();
 }

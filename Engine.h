@@ -2,6 +2,17 @@
 
 #include "pch.h"
 
+// 생성할 윈도우의ㅡ 정보를 담을 구조체 정의
+typedef struct WindowInfo {
+	int x;
+	int y;
+	int width;
+	int height;
+	float fWidth;
+	float fHeight;
+	char* windowTitle;
+} WIN_INFO;
+
 class Engine{
 public:
 	// 기본 생성, 소멸자
@@ -29,6 +40,8 @@ public:
 	void ReSizeWindow(int, int);
 	// 게임 로직 업데이트 함수
 	void Update();
+	// 렌더링 명령 함수
+	void Render();
 	// 게임 루프함수
 	void Loop();
 };

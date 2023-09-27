@@ -17,8 +17,8 @@ Engine::~Engine() {
 	// 동적할당 객체들 메모리 할당 해제
 	//if (m_timer) delete m_timer;
 	//m_timer = nullptr;
-	//if (m_shader) delete m_shader;
-	//m_shader = nullptr;
+	if (m_shader) delete m_shader;
+	m_shader = nullptr;
 }
 
 // 콜백함수들 등록
@@ -65,6 +65,7 @@ void Engine::Init(int* argc, char** argv) {
 	// 쉐이더 프로그램 초기화
 	m_shader = new Shader{ };
 	m_shader->CreateShaderProgram();
+	m_shader->CreateBuffers();
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -77,6 +78,14 @@ void Engine::ReSizeWindow(int w, int h) {
 void Engine::Update() {
 }
 
+void Engine::Render() {
+	m_shader->UseProgram();
+	glBindVertexArray(m_shader->GetVAO());
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+}
+
 void Engine::Loop() {
 	glutMainLoop();
 }
+
