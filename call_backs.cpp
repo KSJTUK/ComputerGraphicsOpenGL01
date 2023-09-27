@@ -2,13 +2,15 @@
 #include "pch.h"
 #include "call_backs.h"
 #include "Shader.h"
+#include "training_solution.h"
+#include "ShapeManager.h"
 
 extern class Engine e;
 
 // 그리기 콜백함수
 void renderFunc()
 {
-	glClearColor(1.f, 1.f, 1.f, 1.f);
+	glClearColor(0.f, 1.f, 0.f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// rendering function
@@ -31,6 +33,8 @@ void idleFunc()
 {
 	// Frame객체의 Update함수 사용
 	e.Update();
+	
+	draw_spiral(e.GetDeltaTime());
 	glutPostRedisplay();
 }
 

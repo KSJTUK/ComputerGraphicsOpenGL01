@@ -28,8 +28,8 @@ void Timer::Init() {
 	m_prev = new LARGE_INTEGER;
 	m_tick = new LARGE_INTEGER;
 
-	QueryPerformanceCounter(m_tick);
-	QueryPerformanceFrequency(m_prev);
+    QueryPerformanceFrequency(m_tick);
+    QueryPerformanceCounter(m_prev);
 }
 
 void Timer::Update() {
@@ -52,7 +52,7 @@ void Timer::Update() {
         m_frameCount = 0;
         m_timeElapsed = 0.0f;
     }
-
+    //
     // 이전 시간을 현재시간으로 변경
     *m_prev = currentFrameTime;
 }

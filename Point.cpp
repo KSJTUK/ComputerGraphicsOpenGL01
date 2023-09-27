@@ -21,3 +21,7 @@ void Point::Update() {
 	m_mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float));
 	m_mesh->SetIndexBuffer(indexBuf, sizeof(indexBuf) / sizeof(unsigned int));
 }
+
+void Point::Render() {
+	Object::Render();
+}

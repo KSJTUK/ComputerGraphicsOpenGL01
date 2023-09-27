@@ -138,6 +138,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShapeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="training_solution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="call_backs.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShapeManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="training_solution.h" />
     <ClInclude Include="vertex_info.h" />
   </ItemGroup>
   <ItemGroup>

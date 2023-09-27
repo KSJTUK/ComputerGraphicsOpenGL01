@@ -6,6 +6,11 @@ Object::Object() {
 	m_mesh->Init();
 }
 
+Object::Object(float x, float y) : x{ x }, y{ y } {
+	m_mesh = new Mesh{ };
+	m_mesh->Init();
+}
+
 Object::~Object() {
 	if (m_mesh) delete m_mesh;
 	m_mesh = nullptr;

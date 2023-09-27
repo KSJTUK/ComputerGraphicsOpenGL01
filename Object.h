@@ -4,6 +4,7 @@
 class Object {
 public:
 	Object();
+	Object(float x, float y);
 	~Object();
 
 	struct DIR {

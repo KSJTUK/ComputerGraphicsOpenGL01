@@ -28,6 +28,15 @@ private:
 	class Shader* m_shader{ nullptr };
 	class Timer* m_timer{ nullptr };
 
+	class ShapeManager* m_shapeManager{ nullptr };
+
+public:
+	// getter and Setter
+	class ShapeManager* GetShapeManager();
+	float GetDeltaTime() const;
+	float GetWindowfWidth() const;
+	float GetWindowfHeight() const;
+
 private:
 	// 멤버함수 내에서만 쓰일 함수들 정의
 	void SubscribeCallbacks();
