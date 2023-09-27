@@ -1,6 +1,9 @@
+#include "pch.h"
 #include "Engine.h"
 #include "call_backs.h"
 #include "Shader.h"
+#include "Mesh.h"
+#include "vertex_info.h"
 
 Engine::Engine() {
 	m_windowInfo.x = 100;
@@ -10,15 +13,18 @@ Engine::Engine() {
 	m_windowInfo.fWidth = static_cast<float>(m_windowInfo.width);
 	m_windowInfo.fHeight = static_cast<float>(m_windowInfo.height);
 
-	m_windowTitle = "OpenGL_PG1";
+	std::string title{ "OpenGL Project 01" };
+	std::string::size_type size = title.size();
+	m_windowTitle = new char[size + 1] {};
+	memcpy(m_windowTitle, title.c_str(), size + 1);
 }
 
 Engine::~Engine() {
 	// 동적할당 객체들 메모리 할당 해제
 	//if (m_timer) delete m_timer;
 	//m_timer = nullptr;
-	if (m_shader) delete m_shader;
-	m_shader = nullptr;
+	SafeDeletePointer(m_shader);
+	SafeDeleteArrayPointer(m_windowTitle);
 }
 
 // 콜백함수들 등록
@@ -46,7 +52,7 @@ void Engine::Init(int* argc, char** argv) {
 	glutInitWindowSize(m_windowInfo.width, m_windowInfo.height);
 
 	// 윈도우 생성
-	glutCreateWindow(m_windowTitle.c_str());
+	glutCreateWindow(m_windowTitle);
 
 	// glew 라이브러리 초기화
 	glewExperimental = GL_TRUE;
@@ -65,7 +71,10 @@ void Engine::Init(int* argc, char** argv) {
 	// 쉐이더 프로그램 초기화
 	m_shader = new Shader{ };
 	m_shader->CreateShaderProgram();
-	m_shader->CreateBuffers();
+
+	// 메쉬 초기화
+	m_mesh = new Mesh{ };
+	m_mesh->Init();
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -80,8 +89,6 @@ void Engine::Update() {
 
 void Engine::Render() {
 	m_shader->UseProgram();
-	glBindVertexArray(m_shader->GetVAO());
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 }
 

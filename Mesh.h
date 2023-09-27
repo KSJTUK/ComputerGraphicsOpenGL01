@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 
-// VAO, VBO, EBO¸¦ ¹ÙÀÎµùÇØ¼­ »ï°¢ÇüÀ» ±×·ÁÁÙ Å¬·¡½º
+// VAO, VBO, EBOë¥¼ ë°”ì¸ë”©í•´ì„œ ì‚¼ê°í˜•ì„ ê·¸ë ¤ì¤„ í´ë˜ìŠ¤
 class Mesh {
 public:
 	Mesh();
 	~Mesh();
 
-	// º¹»ç ¿¬»ê Çã¿ë
+	// ë³µì‚¬ ì—°ì‚° í—ˆìš©
 	Mesh(const Mesh& ohter);
 	Mesh& operator=(const Mesh& other);
 
@@ -18,14 +18,9 @@ private:
 	// Element Buffer OBject ID
 	unsigned int m_elemetBufferObject{ };
 
-	float* m_vertexBuffer{ nullptr };
-	float* m_indexBuffer{ nullptr };
-	int m_vertexLocation{ };
-	int m_colorLocation{ };
-
 public:
-	bool Init(const unsigned int* const shaderProgramID);
-	void SetVertexs(int location, float* vertexBuffer, size_t bufferSize, size_t stride);
-	void Update();
+	void Init();
+	void SetVertexs(float* vertexBuffer, size_t bufferSize, size_t vertexSize, size_t stride);
+	void SetIndexBuffer(float* indexBuffer, size_t bufferSize);
 	void Render();
 };

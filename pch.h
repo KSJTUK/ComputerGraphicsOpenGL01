@@ -13,3 +13,16 @@
 // 사용자 정의 라이브러리
 
 // 클래스, 구조체
+
+// 유용한 함수들 정의
+inline void SafeDeletePointer(void* pointer)
+{
+	if (pointer) delete pointer;
+	pointer = nullptr;
+}
+
+inline void SafeDeleteArrayPointer(void* pointer)
+{
+	if (pointer) delete[] pointer;
+	pointer = nullptr;
+}

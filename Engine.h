@@ -1,7 +1,5 @@
 ﻿#pragma once
 
-#include "pch.h"
-
 // 생성할 윈도우의ㅡ 정보를 담을 구조체 정의
 typedef struct WindowInfo {
 	int x;
@@ -25,7 +23,8 @@ public:
 
 private:
 	WIN_INFO m_windowInfo;
-	std::string m_windowTitle{ };
+	char* m_windowTitle{ };
+	class Mesh* m_mesh{ nullptr };
 	class Shader* m_shader{ nullptr };
 	class Timer* m_timer{ nullptr };
 

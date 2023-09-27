@@ -141,6 +141,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="vertex_info.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.glsl" />
