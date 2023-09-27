@@ -46,6 +46,7 @@ protected:
 
 	// 회전 각도
 	float m_rotateAngle{ };
+	unsigned int m_drawMode{ };
 
 	// Mesh객체
 	class Mesh* m_mesh{ nullptr };
