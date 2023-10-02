@@ -2,20 +2,21 @@
 #include "Mesh.h"
 
 Object::Object() {
-	m_mesh = new Mesh{ };
-	m_mesh->Init();
-}
-
-Object::Object(float x, float y) : x{ x }, y{ y } {
-	m_mesh = new Mesh{ };
-	m_mesh->Init();
 }
 
 Object::~Object() {
-	if (m_mesh) delete m_mesh;
-	m_mesh = nullptr;
 }
 
-void Object::Render() {
-	m_mesh->Render();
+Object::Object(float x, float y, float z, float sizeX, float sizeY, float sizeZ) {
+	m_origin = { x, y, z };
+	m_size.x = sizeX;
+	m_size.y = sizeY;
+	m_size.z = sizeZ;
+}
+
+Object::Object(const Vec3F& position, const Size3F& size) {
+	m_origin = position;
+	m_size.x = size.x;
+	m_size.y = size.y;
+	m_size.z = size.z;
 }

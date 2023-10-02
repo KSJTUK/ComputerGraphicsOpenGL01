@@ -1,11 +1,16 @@
 ﻿#pragma once
 
+#include "types.h"
+#include <string>
+
 // 실질적인 물체를 의미하는 Object클래스
 class Object {
 public:
 	Object();
-	Object(float x, float y);
-	~Object();
+	virtual ~Object();
+
+	Object(float x, float y, float z, float sizeX, float sizeY, float sizeZ);
+	Object(const Vec3F& position, const Size3F& size);
 
 	struct DIR {
 		int x{ };
@@ -38,22 +43,22 @@ public:
 
 protected:
 	// 중심점 x, y
-	float x{ };
-	float y{ };
+	Vec3F m_origin{ 0.f, 0.f, 0.f };
 
 	// 위아래 크기
-	float sizeX{ };
-	float sizeY{ };
+	Size3F m_size{ 0.f, 0.f, 0.f };
 
 	// 회전 각도
 	float m_rotateAngle{ };
 	unsigned int m_drawMode{ };
 
-	// Mesh객체
-	class Mesh* m_mesh{ nullptr };
+	std::string m_tag{ };
 
 public:
-	virtual void Update() = 0;
-	virtual void Render();
+	std::string GetObjectTag() const { return m_tag; }
+
+public:
+	virtual void Update(float deltaTime) = 0;
+	virtual void Render(class Mesh* mesh) = 0;
 };
 

@@ -27,19 +27,17 @@ private:
 	class Mesh* m_mesh{ nullptr };
 	class Shader* m_shader{ nullptr };
 	class Timer* m_timer{ nullptr };
-
 	class ShapeManager* m_shapeManager{ nullptr };
-
-public:
-	// getter and Setter
-	class ShapeManager* GetShapeManager();
-	float GetDeltaTime() const;
-	float GetWindowfWidth() const;
-	float GetWindowfHeight() const;
 
 private:
 	// 멤버함수 내에서만 쓰일 함수들 정의
 	void SubscribeCallbacks();
+
+public:
+	size_t GetWindowWidth() const { return m_windowInfo.width; }
+	size_t GetWindowHeight() const { return m_windowInfo.height; }
+	float GetWindowWidthF() const { return m_windowInfo.fWidth; }
+	float GetWindowHeightF() const { return m_windowInfo.fHeight; }
 	
 public:
 	// 기본 멤버 객체들 생성, 윈도우 생성, 콜백함수 설정등을 하는 함수

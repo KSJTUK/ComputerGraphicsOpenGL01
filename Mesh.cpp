@@ -5,14 +5,6 @@ Mesh::Mesh() : m_drawMode{ GL_TRIANGLES } { }
 
 Mesh::~Mesh() { }
 
-Mesh::Mesh(const Mesh& ohter) {
-	
-}
-
-Mesh& Mesh::operator=(const Mesh& other) {
-	return *this;
-}
-
 void Mesh::Init() {
 	// VAO 객체 생성 및 바인드
 	// VBO 객체 생성 및 바인드
@@ -40,7 +32,7 @@ void Mesh::SetVertexs(float* vertexBuffer, size_t bufferSize) {
 
 void Mesh::SetIndexBuffer(unsigned int* indexBuffer, size_t bufferSize) {
 	// 인덱스 버퍼 내용 저장
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, bufferSize * sizeof(unsigned int), indexBuffer, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, bufferSize * sizeof(unsigned int), indexBuffer, GL_DYNAMIC_DRAW);
 }
 
 void Mesh::SetDrawMode(unsigned int mode) {

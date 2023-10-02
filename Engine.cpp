@@ -5,7 +5,6 @@
 #include "Mesh.h"
 #include "Timer.h"
 #include "ShapeManager.h"
-#include "vertex_info.h"
 
 Engine::Engine() {
 	m_windowInfo.x = 100;
@@ -68,9 +67,6 @@ void Engine::Init(int* argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	glEnable(GL_PROGRAM_POINT_SIZE);
-	glPointSize(2.f);
-
 	SubscribeCallbacks();
 
 	// 타이머 초기화
@@ -80,13 +76,12 @@ void Engine::Init(int* argc, char** argv) {
 	// 쉐이더 프로그램 초기화
 	m_shader = new Shader{ };
 	m_shader->CreateShaderProgram();
-
-	// 메쉬 초기화
-	m_mesh = new Mesh{ };
-	m_mesh->Init();
-
-	// 쉐이프 매니저 생성
+	
 	m_shapeManager = new ShapeManager{ };
+
+	m_shapeManager->CreatePoint(100.f, 100.f);
+	m_shapeManager->CreateTriangle(-100.f, 100.f, 100.f);
+	m_shapeManager->CreateTriangle(100.f, 100.f, 100.f);
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -98,33 +93,13 @@ void Engine::ReSizeWindow(int w, int h) {
 
 void Engine::Update() {
 	m_timer->Update();
-
-	//m_mesh->SetVertexs(vPositionList, sizeof(vPositionList) / sizeof(float));
-	//m_mesh->SetIndexBuffer(index, sizeof(index) / sizeof(float));
-	m_shapeManager->Update();
+	float deltaTime = m_timer->GetDeltaTime();
+	m_shapeManager->Update(deltaTime);
 }
 
 void Engine::Render() {
 	m_shader->UseProgram();
-
-	/*m_mesh->Render();*/
 	m_shapeManager->Render();
-}
-
-ShapeManager* Engine::GetShapeManager() {
-	return m_shapeManager;
-}
-
-float Engine::GetDeltaTime() const {
-	return m_timer->GetDeltaTime();
-}
-
-float Engine::GetWindowfWidth() const {
-	return m_windowInfo.fWidth;
-}
-
-float Engine::GetWindowfHeight() const {
-	return m_windowInfo.fHeight;
 }
 
 void Engine::Loop() {

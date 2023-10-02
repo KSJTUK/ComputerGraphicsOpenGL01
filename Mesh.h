@@ -6,10 +6,6 @@ public:
 	Mesh();
 	~Mesh();
 
-	// 복사 연산 허용
-	Mesh(const Mesh& ohter);
-	Mesh& operator=(const Mesh& other);
-
 private:
 	// Vertex Buffer Object ID
 	unsigned int m_vertexBufferObject{ };

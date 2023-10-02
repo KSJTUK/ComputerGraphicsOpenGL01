@@ -2,26 +2,41 @@
 #include "pch.h"
 #include "Mesh.h"
 
+void Point::SetRotateAngle(float rotateAngle) {
+	m_rotateAngle = rotateAngle;
+}
+
+void Point::AddRotateAngle(float addAngle) {
+	m_rotateAngle += addAngle;
+}
+
 void Point::Move(int moveDir) {
-	x += m_dirSet[moveDir].x;
-	y += m_dirSet[moveDir].y;
+	m_origin.x += m_dirSet[moveDir].x;
+	m_origin.y += m_dirSet[moveDir].y;
 }
 
 void Point::SetPt(float _x, float _y) {
-	x = _x;
-	y = _y;
+	m_origin.x = _x;
+	m_origin.y = _y;
 }
 
-void Point::Update() {
+void Point::Update(float deltaTime) {
 	m_drawMode = GL_POINTS;
-	m_mesh->SetDrawMode(m_drawMode);
-	float vertBuf[] = { x, y, 0.f, 1.f, 0.f, 0.f };
+}
+
+void Point::SetDrawMode() {
+}
+
+void Point::Render(Mesh* mesh) {
+	mesh->SetDrawMode(m_drawMode);
+
+	Vec3F drawVec = m_origin.Rotate(m_rotateAngle);
+	drawVec = drawVec.ToGLCoordinate();
+
+	float vertBuf[] = { drawVec.x, drawVec.y, drawVec.z, m_color.r, m_color.g, m_color.b };
 	unsigned int indexBuf[] = { 0 };
 
-	m_mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float));
-	m_mesh->SetIndexBuffer(indexBuf, sizeof(indexBuf) / sizeof(unsigned int));
-}
-
-void Point::Render() {
-	Object::Render();
+	mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float));
+	mesh->SetIndexBuffer(indexBuf, sizeof(indexBuf) / sizeof(unsigned int));
+	mesh->Render();
 }

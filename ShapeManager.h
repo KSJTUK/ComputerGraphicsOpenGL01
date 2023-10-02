@@ -4,19 +4,20 @@
 
 class ShapeManager {
 public:
-	ShapeManager() { }
-	~ShapeManager() { }
+	ShapeManager();
+	~ShapeManager();
 
 private:
 	std::list<Object*> m_shapeList{ };
+	std::list<Object*> m_pointList{ };
+	class Mesh* m_mesh{ nullptr };
 
 public:
-	void CreateTriangle(float x, float y, float sizeX, float sizeY);
+	void CreateTriangle(float x, float y, float size);
 	void CreatePoint(float x, float y);
 
 public:
-	void Update();
+	void Update(float deltaTime);
 	void Render();
-	void Clear();
 };
 
