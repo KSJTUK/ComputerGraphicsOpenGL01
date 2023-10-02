@@ -31,3 +31,6 @@ struct Vertex {
 	Vec3F vector;
 	Color3F color;
 };
+
+Vec3F GetRandomVec3F(float minX, float minY, float maxX, float maxY);
+Color3F GetRandomColor3F(float min, float max);

@@ -16,10 +16,9 @@ public:
 	void SetRotateAngle(float rotateAngle);
 	void AddRotateAngle(float addAngle);
 	void SetPt(float x, float y);
-	void SetDrawMode();
+	void SetDrawMode(int drawMode);
 
 public:
-	void Move(int moveDir);
 	void Update(float deltaTime) override;
 	void Render(class Mesh* mesh) override;
 };

@@ -22,6 +22,16 @@ ShapeManager::~ShapeManager() {
 	SafeDeletePointer(m_mesh);
 }
 
+void ShapeManager::MoveAll(const Vec3F& moveVec) {
+
+}
+
+void ShapeManager::DrawToLinesAll() {
+	for (auto& e : m_shapeList) {
+		e->SetDrawMode(GL_LINE_LOOP);
+	}
+}
+
 void ShapeManager::CreateTriangle(float x, float y, float size) {
 	m_shapeList.push_back(new Triangle{ x, y, size });
 }

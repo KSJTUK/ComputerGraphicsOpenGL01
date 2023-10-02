@@ -82,6 +82,7 @@ void Engine::Init(int* argc, char** argv) {
 	m_shapeManager->CreatePoint(100.f, 100.f);
 	m_shapeManager->CreateTriangle(-100.f, 100.f, 100.f);
 	m_shapeManager->CreateTriangle(100.f, 100.f, 100.f);
+	m_shapeManager->DrawToLinesAll();
 }
 
 void Engine::ReSizeWindow(int w, int h) {

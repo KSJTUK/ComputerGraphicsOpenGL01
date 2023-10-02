@@ -10,11 +10,6 @@ void Point::AddRotateAngle(float addAngle) {
 	m_rotateAngle += addAngle;
 }
 
-void Point::Move(int moveDir) {
-	m_origin.x += m_dirSet[moveDir].x;
-	m_origin.y += m_dirSet[moveDir].y;
-}
-
 void Point::SetPt(float _x, float _y) {
 	m_origin.x = _x;
 	m_origin.y = _y;
@@ -24,7 +19,7 @@ void Point::Update(float deltaTime) {
 	m_drawMode = GL_POINTS;
 }
 
-void Point::SetDrawMode() {
+void Point::SetDrawMode(int drawMode) {
 }
 
 void Point::Render(Mesh* mesh) {

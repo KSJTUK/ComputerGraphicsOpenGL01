@@ -12,35 +12,6 @@ public:
 	Object(float x, float y, float z, float sizeX, float sizeY, float sizeZ);
 	Object(const Vec3F& position, const Size3F& size);
 
-	struct DIR {
-		int x{ };
-		int y{ };
-	};
-
-	enum DIR_NUM {
-		LEFT,
-		LEFT_UP,
-		UP,
-		RIGHT_UP,
-		RIGHT,
-		RIGHT_DOWN,
-		DOWN,
-		LEFT_DOWN,
-		DIR_NULL,
-	};
-
-	DIR m_dirSet[9]{
-		{ -1, 0 },
-		{ -1, 1 },
-		{ 0, 1 },
-		{ 1, 1 },
-		{ 1, 0 },
-		{ 1, -1 },
-		{ 0, -1 },
-		{ -1, -1 },
-		{ 0, 0 }
-	};
-
 protected:
 	// 중심점 x, y
 	Vec3F m_origin{ 0.f, 0.f, 0.f };
@@ -56,6 +27,7 @@ protected:
 
 public:
 	std::string GetObjectTag() const { return m_tag; }
+	virtual void SetDrawMode(int drawMode) = 0;
 
 public:
 	virtual void Update(float deltaTime) = 0;

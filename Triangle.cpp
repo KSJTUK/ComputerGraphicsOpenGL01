@@ -52,6 +52,10 @@ void Triangle::AddRotateAngle(float addAngle) {
 	m_rotateAngle += addAngle;
 }
 
+void Triangle::SetDrawMode(int drawMode) {
+	m_drawMode = drawMode;
+}
+
 void Triangle::Update(float deltaTime) {
 
 }
