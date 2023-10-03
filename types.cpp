@@ -35,8 +35,8 @@ Vec3F Vec3F::ToGLCoordinate() {
 	float widthF{ e.GetWindowWidthF() };
 	float heightF{ e.GetWindowHeightF() };
 	Vec3F rtVec{
-		x / widthF,
-		y / heightF,
+		x / (widthF / 2.f),
+		y / (heightF / 2.f),
 		z
 	};
 	return rtVec;

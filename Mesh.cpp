@@ -3,7 +3,11 @@
 
 Mesh::Mesh() : m_drawMode{ GL_TRIANGLES } { }
 
-Mesh::~Mesh() { }
+Mesh::~Mesh() {
+	glDeleteVertexArrays(1, &m_vertexArrayObject);
+	glDeleteBuffers(1, &m_elemetBufferObject);
+	glDeleteBuffers(1, &m_vertexBufferObject);
+}
 
 void Mesh::Init() {
 	// VAO 객체 생성 및 바인드

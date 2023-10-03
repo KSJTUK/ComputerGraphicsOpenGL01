@@ -31,6 +31,9 @@
     <Filter Include="헤더 파일\Renderer">
       <UniqueIdentifier>{70f83623-ccf1-4840-8645-a4c937c3b157}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Solution">
+      <UniqueIdentifier>{45b820b8-03ed-4e4c-a370-eb95e44ca549}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -72,11 +75,11 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="solution6.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>헤더 파일\Renderer</Filter>
     </ClInclude>
@@ -114,6 +117,24 @@
       <Filter>헤더 파일\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="solution6.h">
+      <Filter>헤더 파일\Solution</Filter>
+    </ClInclude>
+    <ClInclude Include="solution8.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="solution9.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="solution10.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="solution11.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
       <Filter>헤더 파일\Object</Filter>
     </ClInclude>
   </ItemGroup>

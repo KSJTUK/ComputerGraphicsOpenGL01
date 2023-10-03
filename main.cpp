@@ -1,4 +1,4 @@
-﻿#include "Engine.h"
+﻿#include "solution6.h"
 
 
 #include <crtdbg.h>
@@ -19,9 +19,8 @@ Engine e{ };
 int main(int argc, char* argv[])
 {
 	SDF;
-	e.Init(&argc, argv);
 
-	e.Loop();
+	solution7::solution7(&argc, argv);
 
 	return 0;
 }

@@ -11,7 +11,9 @@ public:
 
 	Triangle(float x, float y, float sizeX);
 	Triangle(const Vec3F& position, const Size3F& size);
-	Triangle(const Vec3F* positions, const Color3F* colors, int indexSize);
+	Triangle(const Vec3F& position, const Size3F& size, const Color3F& color);
+	Triangle(const Vec3F& position, const Size3F& size, const Color3F* colors);
+	Triangle(const Vec3F* positions, const Color3F* colors);
 
 private:
 	Color3F m_vertexColor[3]{ { 1.f, 0.f, 0.f }, { 0.f, 1.f, 0.f }, { 0.f, 0.f, 1.f } };

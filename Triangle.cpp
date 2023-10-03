@@ -23,9 +23,31 @@ Triangle::Triangle(const Vec3F& position, const Size3F& size) : Object{ position
 	m_drawMode = GL_TRIANGLES;
 }
 
-Triangle::Triangle(const Vec3F* positions, const Color3F* colors, int indexSize) {
+Triangle::Triangle(const Vec3F& position, const Size3F& size, const Color3F& color) : Object{ position, size } {
+	m_originPoints[0] = { 0.f, m_size.x * 2.f / 3.f, 0.f };
+	m_originPoints[1] = { -m_size.x / 2.f, -m_size.x / 3.f, 0.f };
+	m_originPoints[2] = { m_size.x / 2.f, -m_size.x / 3.f, 0.f };
+	for (int i = 0; i < 3; ++i) {
+		m_vertexColor[i] = color;
+	}
+	m_tag = "Triangle";
+	m_drawMode = GL_TRIANGLES;
+}
+
+Triangle::Triangle(const Vec3F& position, const Size3F& size, const Color3F* colors) : Object{ position, size } {
+	m_originPoints[0] = { 0.f, m_size.x * 2.f / 3.f, 0.f };
+	m_originPoints[1] = { -m_size.x / 2.f, -m_size.x / 3.f, 0.f };
+	m_originPoints[2] = { m_size.x / 2.f, -m_size.x / 3.f, 0.f };
+	for (int i = 0; i < 3; ++i) {
+		m_vertexColor[i] = colors[i];
+	}
+	m_tag = "Triangle";
+	m_drawMode = GL_TRIANGLES;
+}
+
+Triangle::Triangle(const Vec3F* positions, const Color3F* colors) {
 	m_origin = GetGravityPoint(positions);
-	for (int i = 0; i < indexSize; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		m_originPoints[i] = positions[i] - m_origin;
 		m_vertexColor[i] = colors[i];
 	}

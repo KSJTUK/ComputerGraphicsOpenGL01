@@ -5,6 +5,9 @@ Shader::Shader() { }
 Shader::~Shader() {
 	SafeDeleteArrayPointer(m_vertexShaderFileContents);
 	SafeDeleteArrayPointer(m_fragmentShaderFileContents);
+	glDeleteShader(m_vertexShader);
+	glDeleteShader(m_fragmentShader);
+	glDeleteProgram(m_shaderProgram);
 }
 
 void Shader::RoadVertexShaderFile(const char* filePath) {

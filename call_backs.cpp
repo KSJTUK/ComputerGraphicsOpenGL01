@@ -39,66 +39,12 @@ void idleFunc()
 
 void keyboardFunc(unsigned char key, int x, int y)
 {
-	switch (key) {
-	case 'w':
-		moveVec += MoveDir::up;
-		if (moveVec.y > 1.f) {
-			moveVec.y = 1.f;
-		}
-		break;
-
-	case 'a':
-		moveVec += MoveDir::left;
-		if (moveVec.x < -1.f) {
-			moveVec.x = -1.f;
-		}
-		break;
-		
-	case 's':
-		moveVec += MoveDir::down;
-		if (moveVec.y < -1.f) {
-			moveVec.y = -1.f;
-		}
-		break;
-
-	case 'd':
-		moveVec += MoveDir::right;
-		if (moveVec.x > 1.1f) {
-			moveVec.x = 1.f;
-		}
-		break;
-
-	case 'q':
-		exit(0);
-		break;
-
-	default:
-		break;
-	}
+	
 }
 
 void keyboardUpFunc(unsigned char key, int x, int y)
 {
-	switch (key) {
-	case 'w':
-		moveVec -= MoveDir::up;
-		break;
-
-	case 'a':
-		moveVec -= MoveDir::left;
-		break;
-
-	case 's':
-		moveVec -= MoveDir::down;
-		break;
-
-	case 'd':
-		moveVec -= MoveDir::right;
-		break;
-
-	default:
-		break;
-	}
+	
 }
 
 void specialkeyFunc(int key, int x, int y)

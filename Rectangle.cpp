@@ -11,6 +11,30 @@ RectF::RectF(const Vec3F& origin, const Size3F& size) : Object{ origin, size } {
 	m_drawMode = GL_TRIANGLES;
 }
 
+RectF::RectF(const Vec3F& origin, const Size3F& size, const Color3F& color) : Object{ origin, size } {
+	m_originPoints[0] = { -m_size.x / 2, m_size.y / 2, 0.f };
+	m_originPoints[1] = { -m_size.x / 2.f, -m_size.y / 2.f, 0.f };
+	m_originPoints[2] = { m_size.x / 2.f, -m_size.y / 2.f, 0.f };
+	m_originPoints[3] = { m_size.x / 2.f, m_size.y / 2.f, 0.f };
+	for (int i = 0; i < 4; ++i) {
+		m_vertexColor[i] = color;
+	}
+	m_tag = "Rectangle";
+	m_drawMode = GL_TRIANGLES;
+}
+
+RectF::RectF(const Vec3F& origin, const Size3F& size, const Color3F* colors) : Object{ origin, size } {
+	m_originPoints[0] = { -m_size.x / 2, m_size.y / 2, 0.f };
+	m_originPoints[1] = { -m_size.x / 2.f, -m_size.y / 2.f, 0.f };
+	m_originPoints[2] = { m_size.x / 2.f, -m_size.y / 2.f, 0.f };
+	m_originPoints[3] = { m_size.x / 2.f, m_size.y / 2.f, 0.f };
+	for (int i = 0; i < 4; ++i) {
+		m_vertexColor[i] = colors[i];
+	}
+	m_tag = "Rectangle";
+	m_drawMode = GL_TRIANGLES;
+}
+
 void RectF::SetRotateAngle(float rotateAngle) {
 	m_rotateAngle = rotateAngle;
 }

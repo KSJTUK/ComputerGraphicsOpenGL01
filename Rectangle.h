@@ -6,6 +6,8 @@
 class RectF : public Object {
 public:
 	RectF(const Vec3F& origin, const Size3F& size);
+	RectF(const Vec3F& origin, const Size3F& size, const Color3F& color);
+	RectF(const Vec3F& origin, const Size3F& size, const Color3F* colors);
 	~RectF() { }
 
 private:

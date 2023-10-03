@@ -85,14 +85,10 @@ void Engine::Init(int* argc, char** argv) {
 	m_shader = new Shader{ };
 	m_shader->CreateShaderProgram();
 	
+	// 쉐이프 매니저 초기화
 	m_shapeManager = new ShapeManager{ };
 
-	m_shapeManager->CreatePoint(100.f, 100.f);
-	m_shapeManager->CreateTriangle(-100.f, 100.f, 100.f);
-	m_shapeManager->CreateTriangle(100.f, 100.f, 100.f);
-	m_shapeManager->CreateRectangle(Vec3F{ -100.f, -100.f, 0.f, }, Size3F{ 100.f, 100.f, 0.f });
-
-	//m_shapeManager->DrawToLinesAll();
+	glPointSize(3.f);
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -117,6 +113,30 @@ ShapeManager* Engine::GetShapeManager() const {
 	return m_shapeManager;
 }
 
+void Engine::SubscribeDrawFunc(void(*func)(void)) {
+	glutDisplayFunc(func);
+}
+
+void Engine::SubscribeMouseFunc(void(*func)(int, int, int, int)) {
+	glutMouseFunc(func);
+}
+
+void Engine::SubscribeKeyboardUpfunc(void(*func)(unsigned char, int, int)) {
+	glutKeyboardUpFunc(func);
+}
+
+void Engine::SubscribeKeyboardFunc(void(*func)(unsigned char, int, int)) {
+	glutKeyboardFunc(func);
+}
+
+void Engine::SubscribeReshapeFunc(void(*func)(int, int)) {
+	glutReshapeFunc(func);
+}
+
+void Engine::SubscribeIdleFUnc(void(*func)(void)) {
+	glutIdleFunc(func);
+}
+
 void Engine::Loop() {
 	glutMainLoop();
 }
@@ -124,4 +144,3 @@ void Engine::Loop() {
 void Engine::LoopEnd() {
 	glutLeaveMainLoop();
 }
-

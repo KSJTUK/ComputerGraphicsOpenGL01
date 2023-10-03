@@ -8,6 +8,7 @@ public:
 
 	Point(float x, float y, float z) : Object{ x, y, z, 0.f, 0.f, 0.f } { m_tag = { "Point" }; }
 	Point(const Vec3F& position) : Object{ position, Size3F{ 0.f, 0.f, 0.f } } { m_tag = { "Point" }; }
+	Point(const Vec3F& position, const Color3F& color) : Object{ position, Size3F{ 0.f, 0.f, 0.f } }, m_color{ color } { m_tag = { "Point" }; }
 
 private:
 	Color3F m_color{ 1.f, 0.f, 0.f };
@@ -17,6 +18,7 @@ public:
 	void AddRotateAngle(float addAngle);
 	void SetPt(float x, float y);
 	void SetDrawMode(int drawMode);
+	void SetColor(const Color3F& color);
 
 public:
 	bool CheckOut() { return false; }

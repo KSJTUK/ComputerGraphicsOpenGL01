@@ -22,6 +22,10 @@ void Point::Update(float deltaTime) {
 void Point::SetDrawMode(int drawMode) {
 }
 
+void Point::SetColor(const Color3F& color) {
+	m_color = color;
+}
+
 void Point::Render(Mesh* mesh) {
 	mesh->SetDrawMode(m_drawMode);
 
