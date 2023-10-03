@@ -18,8 +18,8 @@ Engine e{ };
 
 int main(int argc, char* argv[])
 {
-	e.Init(&argc, argv);
 	SDF;
+	e.Init(&argc, argv);
 
 	e.Loop();
 

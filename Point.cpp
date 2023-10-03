@@ -31,7 +31,7 @@ void Point::Render(Mesh* mesh) {
 	float vertBuf[] = { drawVec.x, drawVec.y, drawVec.z, m_color.r, m_color.g, m_color.b };
 	unsigned int indexBuf[] = { 0 };
 
-	mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float));
+	mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float), 1);
 	mesh->SetIndexBuffer(indexBuf, sizeof(indexBuf) / sizeof(unsigned int));
 	mesh->Render();
 }

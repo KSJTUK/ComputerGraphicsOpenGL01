@@ -36,6 +36,14 @@ private:
 	void SubscribeCallbacks();
 
 public:
+	void SubscribeDrawFunc(void(*func)(void));
+	void SubscribeIdleFUnc(void(*func)(void));
+	void SubscribeReshapeFunc(void(*func)(int, int));
+	void SubscribeMouseFunc(void(*func)(int, int, int));
+	void SubscribeKeyboardFunc(void(*func)(unsigned char, int, int));
+	void SubscribeKeyboardUpfunc(void(*func)(unsigned char, int, int));
+
+public:
 	size_t GetWindowWidth() const { return m_windowInfo.width; }
 	size_t GetWindowHeight() const { return m_windowInfo.height; }
 	float GetWindowWidthF() const { return m_windowInfo.fWidth; }

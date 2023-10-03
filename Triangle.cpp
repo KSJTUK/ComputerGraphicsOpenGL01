@@ -108,7 +108,7 @@ void Triangle::Render(Mesh* mesh) {
 	};
 	unsigned int indexBuf[]{ 0, 1, 2 };
 
-	mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float));
+	mesh->SetVertexs(vertBuf, sizeof(vertBuf) / sizeof(float), 3);
 	mesh->SetIndexBuffer(indexBuf, sizeof(indexBuf) / sizeof(unsigned int));
 	mesh->Render();
 }

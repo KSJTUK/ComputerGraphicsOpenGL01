@@ -19,7 +19,8 @@ void Mesh::Init() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elemetBufferObject); //--- GL_ELEMENT_ARRAY_BUFFER 버퍼 유형으로 바인딩
 }
 
-void Mesh::SetVertexs(float* vertexBuffer, size_t bufferSize) {
+void Mesh::SetVertexs(float* vertexBuffer, size_t bufferSize, size_t vertexSize) {
+	m_vertexSize = vertexSize;
 	// VAO에 데이터 저장
 	glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(float), vertexBuffer, GL_STATIC_DRAW);
 
@@ -42,5 +43,6 @@ void Mesh::SetDrawMode(unsigned int mode) {
 void Mesh::Render() {
 	// shaderProgram 에서 UseProgram을 활성화 했다는 가정하에 수행
 	glBindVertexArray(m_vertexArrayObject);
-	glDrawElements(m_drawMode, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(m_drawMode, m_vertexSize, GL_UNSIGNED_INT, 0);
+	//glBindVertexArray(0);
 }

@@ -1,6 +1,7 @@
 #include "ShapeManager.h"
 #include "Point.h"
 #include "Triangle.h"
+#include "Rectangle.h"
 #include "pch.h"
 #include "Mesh.h"
 
@@ -43,6 +44,10 @@ void ShapeManager::CreateTriangle(float x, float y, float size) {
 
 void ShapeManager::CreatePoint(float x, float y) {
 	m_pointList.push_back(new Point{ x, y, 0.f });
+}
+
+void ShapeManager::CreateRectangle(const Vec3F& origin, const Size3F& size) {
+	m_shapeList.push_back(new RectF{ origin, size });
 }
 
 void ShapeManager::Update(float deltaTime) {

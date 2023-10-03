@@ -17,6 +17,7 @@ public:
 	void DrawToLinesAll();
 	void CreateTriangle(float x, float y, float size);
 	void CreatePoint(float x, float y);
+	void CreateRectangle(const Vec3F& origin, const Size3F& size);
 
 public:
 	void Update(float deltaTime);

@@ -90,7 +90,9 @@ void Engine::Init(int* argc, char** argv) {
 	m_shapeManager->CreatePoint(100.f, 100.f);
 	m_shapeManager->CreateTriangle(-100.f, 100.f, 100.f);
 	m_shapeManager->CreateTriangle(100.f, 100.f, 100.f);
-	m_shapeManager->DrawToLinesAll();
+	m_shapeManager->CreateRectangle(Vec3F{ -100.f, -100.f, 0.f, }, Size3F{ 100.f, 100.f, 0.f });
+
+	//m_shapeManager->DrawToLinesAll();
 }
 
 void Engine::ReSizeWindow(int w, int h) {
