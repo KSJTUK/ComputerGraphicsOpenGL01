@@ -30,7 +30,8 @@ namespace MoveDir {
 	extern Vec3F leftUp;
 	extern Vec3F leftDown;
 	extern Vec3F rightUp;
-	extern Vec3F rightDownf;
+	extern Vec3F rightDown;
+	extern Vec3F null;
 }
 
 namespace Constant {
@@ -38,3 +39,5 @@ namespace Constant {
 	extern long double Pi;
 	extern float gravity;
 }
+
+float GetRandomF(float min, float max);

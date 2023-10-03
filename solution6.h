@@ -43,7 +43,7 @@ namespace solution7 {
 	// 마우스 휠 입력함수
 	void mouseWheel(int, int, int);
 
-	void solution7(int* argc, char** argv) {
+	void solution(int* argc, char** argv) {
 		e.Init(argc, argv);
 
 		float width = e.GetWindowWidthF();
@@ -131,6 +131,14 @@ namespace solution7 {
 		case 'p':
 			if (e.GetShapeManager()->GetShapeListSize() < 10) {
 				e.GetShapeManager()->CreatePoint(GetRandomVec3F(minWindow.x, minWindow.y, maxWindow.x, maxWindow.y), GetRandomColor3F(0.f, 1.f));
+			}
+			break;
+
+		case 'l':
+			if (e.GetShapeManager()->GetShapeListSize() < 10) {
+				e.GetShapeManager()->CreateLine(GetRandomVec3F(minWindow.x, minWindow.y, maxWindow.x, maxWindow.y),
+					GetRandomVec3F(minWindow.x, minWindow.y, maxWindow.x, maxWindow.y),
+					GetRandomColor3F(0.f, 1.f));
 			}
 			break;
 

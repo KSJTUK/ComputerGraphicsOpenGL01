@@ -3,13 +3,20 @@
 #include "Engine.h"
 #include "constants.h"
 #include "ShapeManager.h"
+#include "Line.h"
 #include "Point.h"
 #include "Triangle.h"
 #include "types.h"
 #include "pch.h"
+#include <list>
 
-namespace solution7 {
-	Engine e{ };
+extern Engine e;
+
+namespace solution9 {
+	Vec3F minWindow{ };
+	Vec3F maxWindow{ };
+	Mesh* renderer{ };
+	std::list<Triangle*> triangleList{ };
 
 	// 그리기 콜백함수
 	void renderFunc();
@@ -39,8 +46,32 @@ namespace solution7 {
 	// 마우스 휠 입력함수
 	void mouseWheel(int, int, int);
 
-	void solution7(int* argc, char** argv) {
+	// 이동함수
+	void MoveToState(Triangle* triangle, int moveState, float deltaTime);
+	void MoveZigZag(Triangle* triangle, float deltaTime);
+	void MovePingPong(Triangle* triangle);
+	void MoveSpiral(Triangle* triangle);
+	void MoveRectSpiral(Triangle* triangle);
+
+
+	void solution(int* argc, char** argv) {
 		e.Init(argc, argv);
+
+		float width = e.GetWindowWidthF();
+		float height = e.GetWindowHeightF();
+		minWindow = { -width / 2.f, -height / 2.f, 0.f };
+		maxWindow = { width / 2.f, height / 2.f, 0.f };
+
+		e.SubscribeDrawFunc(solution9::renderFunc);
+		e.SubscribeReshapeFunc(solution9::reshapeFunc);
+		e.SubscribeMouseFunc(solution9::mouseFunc);
+		e.SubscribeIdleFUnc(solution9::idleFunc);
+		e.SubscribeKeyboardFunc(solution9::keyboardFunc);
+		e.SubscribeKeyboardUpfunc(solution9::keyboardUpFunc);
+
+		renderer = e.GetShapeManager()->GetMesh();
+
+		triangleList.push_back(new Triangle{ Vec3F{ }, GetRandomVec3F(100.f, 0.f, 100.f, 0.f), Colors::red });
 
 		e.Loop();
 	}
@@ -55,12 +86,20 @@ namespace solution7 {
 		// rendering function
 		e.Render();
 
+		for (auto& e : triangleList) {
+			e->Render(renderer);
+		}
+
 		glutSwapBuffers();
 	}
 
 	void reshapeFunc(int x, int y)
 	{
 		e.SetWindowSize(x, y);
+		float width = e.GetWindowWidthF();
+		float height = e.GetWindowHeightF();
+		minWindow = { -width / 2.f, -height / 2.f, 0.f };
+		maxWindow = { width / 2.f, height / 2.f, 0.f };
 
 		glViewport(0, 0, x, y);
 	}
@@ -69,6 +108,10 @@ namespace solution7 {
 	{
 		// Frame객체의 Update함수 사용
 		e.Update();
+		float deltaTime = e.GetDeltaTime();
+		for (auto& e : triangleList) {
+			MoveToState(e, 2, deltaTime);
+		}
 		glutPostRedisplay();
 	}
 
@@ -110,5 +153,9 @@ namespace solution7 {
 	void mouseWheel(int dir, int x, int y)
 	{
 	}
-
+	
+	void MoveToState(Triangle* triangle, int moveState, float deltaTime)
+	{
+		triangle->MoveToState(1, deltaTime, minWindow, maxWindow);
+	}
 }

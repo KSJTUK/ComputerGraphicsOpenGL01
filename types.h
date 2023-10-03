@@ -45,3 +45,12 @@ struct Vertex {
 
 Vec3F GetRandomVec3F(float minX, float minY, float maxX, float maxY);
 Color3F GetRandomColor3F(float min, float max);
+
+// 유용한 함수들 정의
+void SafeDeletePointer(void* pointer);
+void SafeDeleteArrayPointer(void* pointer);
+
+int winXToGLX(int x);
+int winYToGLY(int y);
+
+bool isInBox(const Vec3F& pos, const Vec3F& lt, const Vec3F& rb);

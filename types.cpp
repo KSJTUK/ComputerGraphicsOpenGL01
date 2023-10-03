@@ -6,10 +6,10 @@
 extern Engine e;
 
 Vec3F& Vec3F::operator=(const Vec3F& other) {
-		x = other.x;
-		y = other.y;
-		z = other.z;
-		return *this;
+	x = other.x;
+	y = other.y;
+	z = other.z;
+	return *this;
 }
 
 Vec3F Vec3F::Rotate(float rotateAngle) {
@@ -95,6 +95,36 @@ Vec3F GetRandomVec3F(float minX, float minY, float maxX, float maxY) {
 Color3F GetRandomColor3F(float min, float max) {
 	std::uniform_real_distribution<float> urd{ min, max };
 	return Color3F{ urd(Random::dre), urd(Random::dre), urd(Random::dre) };
+}
+
+void SafeDeletePointer(void* pointer)
+{
+	if (pointer) delete pointer;
+	pointer = nullptr;
+}
+
+void SafeDeleteArrayPointer(void* pointer)
+{
+	if (pointer) delete[] pointer;
+	pointer = nullptr;
+}
+
+int winXToGLX(int x)
+{
+	return x - (int)e.GetWindowWidth() / 2;
+}
+
+int winYToGLY(int y)
+{
+	return -(y - (int)e.GetWindowHeight() / 2);
+}
+
+bool isInBox(const Vec3F& pos, const Vec3F& lt, const Vec3F& rb)
+{
+	if (pos.x < rb.x and pos.x > lt.x and pos.y < lt.y and pos.y > rb.y) {
+		return true;
+	}
+	return false;
 }
 
 Color3F& Color3F::operator=(const Color3F& other) {

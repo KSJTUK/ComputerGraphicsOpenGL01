@@ -26,10 +26,17 @@ namespace MoveDir {
 	Vec3F leftDown{ -1.f, -1.f, 0.f };
 	Vec3F rightUp{ 1.f, 1.f, 0.f };
 	Vec3F rightDown{ 1.f, -1.f, 0.f };
+	Vec3F null{ 0.f, 0.f, 0.f };
 }
 
 namespace Constant {
 	float f_Pi{ 3.141592f };
 	long double Pi{ 3.141592 };
 	float gravity{ 9.8f };
+}
+
+float GetRandomF(float min, float max)
+{
+	std::uniform_real_distribution<float> urd{ min, max };
+	return urd(Random::dre);
 }

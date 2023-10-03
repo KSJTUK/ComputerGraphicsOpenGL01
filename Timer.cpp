@@ -1,4 +1,5 @@
 ﻿#include "Timer.h"
+#include "types.h"
 #include "pch.h"
 #include <Windows.h>
 
@@ -28,8 +29,8 @@ void Timer::Init() {
 	m_prev = new LARGE_INTEGER;
 	m_tick = new LARGE_INTEGER;
 
-	QueryPerformanceCounter(m_tick);
-	QueryPerformanceFrequency(m_prev);
+    QueryPerformanceFrequency(m_tick);
+    QueryPerformanceCounter(m_prev);
 }
 
 void Timer::Update() {

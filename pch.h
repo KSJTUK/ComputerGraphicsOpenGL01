@@ -13,18 +13,3 @@
 // 사용자 정의 라이브러리
 
 // 클래스, 구조체
-
-// 유용한 함수들 정의
-template <typename T>
-inline void SafeDeletePointer(T* pointer)
-{
-	if (pointer) delete pointer;
-	pointer = nullptr;
-}
-
-template <typename T>
-inline void SafeDeleteArrayPointer(T* pointer)
-{
-	if (pointer) delete[] pointer;
-	pointer = nullptr;
-}

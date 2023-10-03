@@ -1,4 +1,5 @@
 ﻿#include "Shader.h"
+#include "types.h"
 #include "pch.h"
 
 Shader::Shader() { }

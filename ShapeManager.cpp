@@ -1,5 +1,6 @@
 #include "ShapeManager.h"
 #include "Point.h"
+#include "Line.h"
 #include "Triangle.h"
 #include "Rectangle.h"
 #include "pch.h"
@@ -16,6 +17,10 @@ ShapeManager::~ShapeManager() {
 		SafeDeletePointer(e);
 	}
 	m_shapeList.clear();
+	for (auto& e : m_lineList) {
+		SafeDeletePointer(e);
+	}
+	m_lineList.clear();
 	for (auto& e : m_pointList) {
 		SafeDeletePointer(e);
 	}
@@ -25,7 +30,10 @@ ShapeManager::~ShapeManager() {
 
 void ShapeManager::MoveAll(const Vec3F& moveVec) {
 	for (auto& e : m_shapeList) {
-			e->Move(moveVec);
+		e->Move(moveVec);
+	}
+	for (auto& e : m_lineList) {
+		e->Move(moveVec);
 	}
 	for (auto& e : m_pointList) {
 		e->Move(moveVec);
@@ -66,6 +74,18 @@ void ShapeManager::CreatePoint(const Vec3F& origin, const Color3F& color) {
 	m_pointList.push_back(new Point{ origin, color });
 }
 
+void ShapeManager::CreateLine(const Vec3F& start, const Vec3F& end) {
+	m_lineList.push_back(new Line{ start, end });
+}
+
+void ShapeManager::CreateLine(const Vec3F& start, const Vec3F& end, const Color3F& color) {
+	m_lineList.push_back(new Line{ start, end, color });
+}
+
+void ShapeManager::CreateLine(const Vec3F& start, const Vec3F& end, const Color3F* colors) {
+	m_lineList.push_back(new Line{ start, end, colors });
+}
+
 void ShapeManager::CreateRectangle(const Vec3F& origin, const Size3F& size) {
 	m_shapeList.push_back(new RectF{ origin, size });
 }
@@ -79,14 +99,29 @@ void ShapeManager::CreateRectangle(const Vec3F& origin, const Size3F& size, cons
 }
 
 void ShapeManager::Clear() {
-	for (auto e : m_shapeList) {
+	for (auto& e : m_shapeList) {
 		SafeDeletePointer(e);
 	}
 	m_shapeList.clear();
+	for (auto& e : m_lineList) {
+		SafeDeletePointer(e);
+	}
+	m_lineList.clear();
+	for (auto& e : m_pointList) {
+		SafeDeletePointer(e);
+	}
+	m_pointList.clear();
+}
+
+Mesh* ShapeManager::GetMesh() const {
+	return m_mesh;
 }
 
 void ShapeManager::Update(float deltaTime) {
 	for (auto& e : m_shapeList) {
+		e->Update(deltaTime);
+	}
+	for (auto& e : m_lineList) {
 		e->Update(deltaTime);
 	}
 	for (auto& e : m_pointList) {
@@ -96,6 +131,9 @@ void ShapeManager::Update(float deltaTime) {
 
 void ShapeManager::Render() {
 	for (auto& e : m_shapeList) {
+		e->Render(m_mesh);
+	}
+	for (auto& e : m_lineList) {
 		e->Render(m_mesh);
 	}
 	for (auto& e : m_pointList) {

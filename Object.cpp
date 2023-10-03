@@ -25,7 +25,16 @@ void Object::SetMoveSpeed(float speed) {
 	m_moveSpeed = speed;
 }
 
+void Object::SetOriginPoint(const Vec3F& setPt) {
+	m_origin = setPt;
+}
+
 void Object::Move(const Vec3F& moveDir) {
 	Vec3F moveVec = { moveDir.x * m_moveSpeed, moveDir.y * m_moveSpeed, 0.f };
 	m_origin = m_origin + moveDir;
+}
+
+void Object::Move(const Vec3F& moveDir, float deltaTime, float speed) {
+	m_origin.x += moveDir.x * deltaTime * speed;
+	m_origin.y += moveDir.y * deltaTime * speed;
 }

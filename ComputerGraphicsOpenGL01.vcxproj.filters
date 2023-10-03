@@ -122,12 +122,6 @@
     <ClInclude Include="solution6.h">
       <Filter>헤더 파일\Solution</Filter>
     </ClInclude>
-    <ClInclude Include="solution8.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="solution9.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="solution10.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -136,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="solution8.h">
+      <Filter>헤더 파일\Solution</Filter>
+    </ClInclude>
+    <ClInclude Include="solution9.h">
+      <Filter>헤더 파일\Solution</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
