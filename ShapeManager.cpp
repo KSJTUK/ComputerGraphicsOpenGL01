@@ -23,7 +23,12 @@ ShapeManager::~ShapeManager() {
 }
 
 void ShapeManager::MoveAll(const Vec3F& moveVec) {
-
+	for (auto& e : m_shapeList) {
+			e->Move(moveVec);
+	}
+	for (auto& e : m_pointList) {
+		e->Move(moveVec);
+	}
 }
 
 void ShapeManager::DrawToLinesAll() {

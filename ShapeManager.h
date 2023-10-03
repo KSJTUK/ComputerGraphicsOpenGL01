@@ -13,6 +13,7 @@ private:
 	class Mesh* m_mesh{ nullptr };
 
 public:
+	void MoveAll(const Vec3F& moveVec);
 	void DrawToLinesAll();
 	void CreateTriangle(float x, float y, float size);
 	void CreatePoint(float x, float y);

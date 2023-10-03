@@ -25,6 +25,7 @@ Engine::~Engine() {
 	//if (m_timer) delete m_timer;
 	//m_timer = nullptr;
 	SafeDeletePointer(m_shader);
+	SafeDeletePointer(m_shapeManager);
 	SafeDeleteArrayPointer(m_windowTitle);
 }
 
@@ -39,6 +40,13 @@ void Engine::SubscribeCallbacks() {
 	glutPassiveMotionFunc(mousePassiveMotion);
 	glutIdleFunc(idleFunc);
 	glutSpecialFunc(specialkeyFunc);
+}
+
+void Engine::SetWindowSize(int windowWidth, int windowHeight) {
+	m_windowInfo.width = static_cast<size_t>(windowWidth);
+	m_windowInfo.height = static_cast<size_t>(windowHeight);
+	m_windowInfo.fWidth = static_cast<float>(windowWidth);
+	m_windowInfo.fHeight = static_cast<float>(windowHeight);
 }
 
 
@@ -94,8 +102,8 @@ void Engine::ReSizeWindow(int w, int h) {
 
 void Engine::Update() {
 	m_timer->Update();
-	float deltaTime = m_timer->GetDeltaTime();
-	m_shapeManager->Update(deltaTime);
+	m_deltaTime = m_timer->GetDeltaTime();
+	m_shapeManager->Update(m_deltaTime);
 }
 
 void Engine::Render() {
@@ -103,7 +111,15 @@ void Engine::Render() {
 	m_shapeManager->Render();
 }
 
+ShapeManager* Engine::GetShapeManager() const {
+	return m_shapeManager;
+}
+
 void Engine::Loop() {
 	glutMainLoop();
+}
+
+void Engine::LoopEnd() {
+	glutLeaveMainLoop();
 }
 

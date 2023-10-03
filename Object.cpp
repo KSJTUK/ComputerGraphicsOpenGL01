@@ -20,3 +20,12 @@ Object::Object(const Vec3F& position, const Size3F& size) {
 	m_size.y = size.y;
 	m_size.z = size.z;
 }
+
+void Object::SetMoveSpeed(float speed) {
+	m_moveSpeed = speed;
+}
+
+void Object::Move(const Vec3F& moveDir) {
+	Vec3F moveVec = { moveDir.x * m_moveSpeed, moveDir.y * m_moveSpeed, 0.f };
+	m_origin = m_origin + moveDir;
+}

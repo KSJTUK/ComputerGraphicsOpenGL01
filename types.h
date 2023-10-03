@@ -14,15 +14,26 @@ struct Vec3F {
 	Vec3F operator-(const Vec3F& rhs) const;
 	Vec3F operator+(const Vec3F& rhs) const;
 
+	void operator-=(const Vec3F& rhs);
+	void operator+=(const Vec3F& rhs);
+
+	bool operator==(const Vec3F& rhs) const;
+	bool operator!=(const Vec3F& rhs) const;
+
 	float x{ };
 	float y{ };
 	float z{ };
 };
 
 struct Color3F {
-	float r;
-	float g;
-	float b;
+	Color3F() { }
+	~Color3F() { }
+	Color3F(float r, float g, float b) : r{ r }, g{ g }, b{ b } { }
+	Color3F(const Color3F& other) : r{ other.r }, g{ other.g }, b{ other.b } { }
+	Color3F& operator=(const Color3F& other);
+	float r{ };
+	float g{ };
+	float b{ };
 };
 
 using Size3F = Vec3F;

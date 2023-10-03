@@ -1,14 +1,18 @@
 ﻿#include "Engine.h"
+#include "ShapeManager.h"
+#include "constants.h"
 #include "pch.h"
 #include "call_backs.h"
 #include "Shader.h"
 
 extern class Engine e;
+Vec3F moveVec{ };
 
 // 그리기 콜백함수
 void renderFunc()
 {
-	glClearColor(1.f, 1.f, 1.f, 1.f);
+	Color3F bgColor{ Colors::gray };
+	glClearColor(bgColor.r, bgColor.b, bgColor.b, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// rendering function
@@ -19,11 +23,8 @@ void renderFunc()
 
 void reshapeFunc(int x, int y)
 {
-	// wininfo.width = x;
-	// 
-	// wininfo.height = y;
-	// wininfo.fWidth = static_cast<float>(x);
-	// wininfo.fHeight = static_cast<float>(y);
+	e.SetWindowSize(x, y);
+
 	glViewport(0, 0, x, y);
 }
 
@@ -31,15 +32,73 @@ void idleFunc()
 {
 	// Frame객체의 Update함수 사용
 	e.Update();
+	e.GetShapeManager()->MoveAll(moveVec);
 	glutPostRedisplay();
 }
 
+
 void keyboardFunc(unsigned char key, int x, int y)
 {
+	switch (key) {
+	case 'w':
+		moveVec += MoveDir::up;
+		if (moveVec.y > 1.f) {
+			moveVec.y = 1.f;
+		}
+		break;
+
+	case 'a':
+		moveVec += MoveDir::left;
+		if (moveVec.x < -1.f) {
+			moveVec.x = -1.f;
+		}
+		break;
+		
+	case 's':
+		moveVec += MoveDir::down;
+		if (moveVec.y < -1.f) {
+			moveVec.y = -1.f;
+		}
+		break;
+
+	case 'd':
+		moveVec += MoveDir::right;
+		if (moveVec.x > 1.1f) {
+			moveVec.x = 1.f;
+		}
+		break;
+
+	case 'q':
+		exit(0);
+		break;
+
+	default:
+		break;
+	}
 }
 
 void keyboardUpFunc(unsigned char key, int x, int y)
 {
+	switch (key) {
+	case 'w':
+		moveVec -= MoveDir::up;
+		break;
+
+	case 'a':
+		moveVec -= MoveDir::left;
+		break;
+
+	case 's':
+		moveVec -= MoveDir::down;
+		break;
+
+	case 'd':
+		moveVec -= MoveDir::right;
+		break;
+
+	default:
+		break;
+	}
 }
 
 void specialkeyFunc(int key, int x, int y)

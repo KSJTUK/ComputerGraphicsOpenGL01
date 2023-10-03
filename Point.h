@@ -19,6 +19,7 @@ public:
 	void SetDrawMode(int drawMode);
 
 public:
+	bool CheckOut() { return false; }
 	void Update(float deltaTime) override;
 	void Render(class Mesh* mesh) override;
 };

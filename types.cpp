@@ -60,6 +60,32 @@ Vec3F Vec3F::operator+(const Vec3F& rhs) const {
 	return rtVec;
 }
 
+void Vec3F::operator-=(const Vec3F& rhs) {
+	x -= rhs.x;
+	y -= rhs.y;
+	z -= rhs.z;
+}
+
+void Vec3F::operator+=(const Vec3F& rhs) {
+	x += rhs.x;
+	y += rhs.y;
+	z += rhs.z;
+}
+
+bool Vec3F::operator==(const Vec3F& rhs) const {
+	if (x == rhs.x and y == rhs.y and z == rhs.z) {
+		return true;
+	}
+	return false;
+}
+
+bool Vec3F::operator!=(const Vec3F& rhs) const {
+	if (x != rhs.x or y != rhs.y or z != rhs.z) {
+		return true;
+	}
+	return false;
+}
+
 Vec3F GetRandomVec3F(float minX, float minY, float maxX, float maxY) {
 	std::uniform_real_distribution<float> urdX{ minX, maxX };
 	std::uniform_real_distribution<float> urdY{ minY, maxY };
@@ -69,4 +95,11 @@ Vec3F GetRandomVec3F(float minX, float minY, float maxX, float maxY) {
 Color3F GetRandomColor3F(float min, float max) {
 	std::uniform_real_distribution<float> urd{ min, max };
 	return Color3F{ urd(Random::dre), urd(Random::dre), urd(Random::dre) };
+}
+
+Color3F& Color3F::operator=(const Color3F& other) {
+	r = other.r;
+	g = other.g;
+	b = other.b;
+	return *this;
 }

@@ -7,34 +7,34 @@
 
 namespace Random {
 	extern std::random_device rd;
-	extern std::default_random_engine dre{ rd() };
+	extern std::default_random_engine dre;
 }
 
 namespace Colors {
-	extern Color3F red{ 1.f, 0.f, 0.f };
-	extern Color3F blue{ 0.f, 1.f, 0.f };
-	extern Color3F green{ 0.f, 0.f, 1.f };
-	extern Color3F white{ 1.f, 1.f, 1.f };
-	extern Color3F black{ 0.f, 0.f, 0.f };
-	extern Color3F gray{ 0.5f, 0.5f, 0.5f };
-	extern Color3F magenta{ 1.f, 0.f, 1.f };
-	extern Color3F yellow{ 1.f, 1.f, 0.f };
-	extern Color3F cyan{ 0.f, 1.f, 1.f };
+	extern Color3F red;
+	extern Color3F blue;
+	extern Color3F green;
+	extern Color3F white;
+	extern Color3F black;
+	extern Color3F gray;
+	extern Color3F magenta;
+	extern Color3F yellow;
+	extern Color3F cyan;
 }
 
 namespace MoveDir {
-	extern Vec3F up{ 0.f, 1.f, 0.f };
-	extern Vec3F down{ 0.f, -1.f, 0.f };
-	extern Vec3F left{ -1.f, 0.f, 0.f };
-	extern Vec3F right{ 1.f, 0.f, 0.f };
-	extern Vec3F leftUp{ -1.f, 1.f, 0.f };
-	extern Vec3F leftDown{ -1.f, -1.f, 0.f };
-	extern Vec3F rightUp{ 1.f, 1.f, 0.f };
-	extern Vec3F rightDown{ 1.f, -1.f, 0.f };
+	extern Vec3F up;
+	extern Vec3F down;
+	extern Vec3F left;
+	extern Vec3F right;
+	extern Vec3F leftUp;
+	extern Vec3F leftDown;
+	extern Vec3F rightUp;
+	extern Vec3F rightDownf;
 }
 
 namespace Constant {
-	extern float f_Pi{ 3.141592f };
-	extern long double Pi{ 3.141592 };
-	extern float gravity{ 9.8f };
+	extern float f_Pi;
+	extern long double Pi;
+	extern float gravity;
 }

@@ -2,6 +2,8 @@
 
 #include "Object.h"
 
+class TEST{ };
+
 class Triangle : public Object {
 public:
 	Triangle();

@@ -22,14 +22,17 @@ protected:
 	// 회전 각도
 	float m_rotateAngle{ };
 	unsigned int m_drawMode{ };
+	float m_moveSpeed{ 10.f };
 
 	std::string m_tag{ };
 
 public:
 	std::string GetObjectTag() const { return m_tag; }
 	virtual void SetDrawMode(int drawMode) = 0;
+	void SetMoveSpeed(float speed);
 
 public:
+	void Move(const Vec3F& moveDir);
 	virtual void Update(float deltaTime) = 0;
 	virtual void Render(class Mesh* mesh) = 0;
 };

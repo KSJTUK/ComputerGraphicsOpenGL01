@@ -56,8 +56,39 @@ void Triangle::SetDrawMode(int drawMode) {
 	m_drawMode = drawMode;
 }
 
-void Triangle::Update(float deltaTime) {
+void Triangle::SetColor(const Color3F& color) {
+	for (int i = 0; i < 3; ++i) {
+		m_vertexColor[i] = color;
+	}
+}
 
+void Triangle::SetColor(const Color3F& color1, const Color3F& color2, const Color3F& color3) {
+	m_vertexColor[0] = color1;
+	m_vertexColor[1] = color2;
+	m_vertexColor[2] = color3;
+}
+
+void Triangle::SetColor(const Color3F* color) {
+	for (int i = 0; i < 3; ++i) {
+		m_vertexColor[i] = color[i];
+	}
+}
+
+void Triangle::SetColorRandom() {
+	Color3F randColor = GetRandomColor3F(0.f, 1.f);
+	for (int i = 0; i < 3; ++i) {
+		m_vertexColor[i] = randColor;
+	}
+}
+
+void Triangle::SetColorRandomVertex() {
+	for (int i = 0; i < 3; ++i) {
+		m_vertexColor[i] = GetRandomColor3F(0.f, 1.f);
+	}
+}
+
+void Triangle::Update(float deltaTime) {
+	
 }
 
 void Triangle::Render(Mesh* mesh) {
