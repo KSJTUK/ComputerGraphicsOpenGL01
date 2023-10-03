@@ -48,11 +48,6 @@ namespace solution9 {
 
 	// 이동함수
 	void MoveToState(Triangle* triangle, int moveState, float deltaTime);
-	void MoveZigZag(Triangle* triangle, float deltaTime);
-	void MovePingPong(Triangle* triangle);
-	void MoveSpiral(Triangle* triangle);
-	void MoveRectSpiral(Triangle* triangle);
-
 
 	void solution(int* argc, char** argv) {
 		e.Init(argc, argv);
@@ -110,7 +105,7 @@ namespace solution9 {
 		e.Update();
 		float deltaTime = e.GetDeltaTime();
 		for (auto& e : triangleList) {
-			MoveToState(e, 2, deltaTime);
+			MoveToState(e, 3, deltaTime);
 		}
 		glutPostRedisplay();
 	}
@@ -156,6 +151,6 @@ namespace solution9 {
 	
 	void MoveToState(Triangle* triangle, int moveState, float deltaTime)
 	{
-		triangle->MoveToState(1, deltaTime, minWindow, maxWindow);
+		triangle->MoveToState(moveState, deltaTime, minWindow, maxWindow);
 	}
 }

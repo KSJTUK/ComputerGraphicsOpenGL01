@@ -167,6 +167,32 @@ bool Triangle::OutY(const Vec3F& minWindow, const Vec3F& maxWindow) {
 	return false;
 }
 
+void Triangle::ResetSpecialMoveVariables(int moveState, const Vec3F& minWindow, const Vec3F& maxWindow) {
+	prevMoveDir = MoveDir::null;
+	prevMoveX = MoveDir::null;
+	prevMoveY = MoveDir::null;
+	rateMoveVec = MoveDir::down;
+	rateMove = false;
+	moveTime = 0.f;
+	m_spiralMoveAngle = 0.f;
+	m_spiralMoveRadius = 0.f;
+	m_spiralRadiusDir = 1.f;
+	if (moveState == 3) {
+		m_outCountX = 1;
+		m_outCountY = 1;
+		m_origin = { 0.f, maxWindow.y - ((m_size.x / 2.f)) * m_outCountY, 0.f };
+		m_moveVec = MoveDir::left;
+		prevMoveX = MoveDir::left;
+		rateMove = false;
+		rateMoveVec = MoveDir::null;
+		timeRate = 0.f;
+		m_moveWhileSt = m_origin;
+	}
+	else {
+		m_origin = { };
+	}
+}
+
 void Triangle::Move(float deltaTime) {
 	m_origin.x += m_moveVec.x * deltaTime * m_moveSpeed;
 	m_origin.y += m_moveVec.y * deltaTime * m_moveSpeed;
@@ -174,11 +200,7 @@ void Triangle::Move(float deltaTime) {
 
 void Triangle::MoveToState(int moveState, float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow) {
 	if (m_moveState != moveState) {
-		prevMoveDir = MoveDir::null;
-		prevMoveX = MoveDir::null;
-		prevMoveY = MoveDir::null;
-		rateMoveVec = MoveDir::down;
-		rateMove = false;
+		ResetSpecialMoveVariables(moveState, minWindow, maxWindow);
 	}
 	m_moveState = moveState;
 
@@ -192,13 +214,19 @@ void Triangle::MoveToState(int moveState, float deltaTime, const Vec3F& minWindo
 		break;
 
 	case 3:
+		MoveRectSpiral(deltaTime, minWindow, maxWindow);
+		break;
+
 	case 4:
+		MoveSpiral(deltaTime, minWindow, maxWindow);
+		break;
+
 	default:
 		break;
 	}
 }
 
-void Triangle::MoveZig(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow) {	
+void Triangle::MoveZig(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow) {
 	if (OutY(minWindow, maxWindow)) {
 		if (prevMoveX == MoveDir::left or prevMoveX == MoveDir::null) {
 			m_moveVec = MoveDir::right;
@@ -302,12 +330,94 @@ void Triangle::MovePingPong(float deltaTime, const Vec3F& minWindow, const Vec3F
 	Object::Move(m_moveVec, deltaTime, m_moveSpeed);
 }
 
+void Triangle::MoveRectSpiral(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow) {
+	float moveEndX = maxWindow.x - (m_size.x / 3.f) * m_outCountX;
+	float moveEndY = maxWindow.y - (m_size.x / 3.f) * m_outCountY;
+
+	if (prevMoveX == MoveDir::left) {
+		moveEndX = -moveEndX;
+	}
+
+	if (prevMoveY == MoveDir::up) {
+		moveEndY = -moveEndY;
+	}
+
+	m_moveWhile = true;
+	Vec3F moveEnd = { moveEndX, moveEndY, 0.f };
+	MoveWhile(deltaTime, moveEnd);
+}
+
+void Triangle::MoveSpiral(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow) {
+	float rad = m_spiralMoveAngle * Constant::f_Pi / 180.f;
+	moveTime += deltaTime;
+	float spiralRate = 0.01f;
+	if (spiralRate < moveTime) {
+		moveTime = 0.f;
+		m_origin.x = (std::cosf(rad) * m_spiralMoveRadius + m_origin.x);
+		m_origin.y = (std::sinf(rad) * m_spiralMoveRadius + m_origin.y);
+		m_spiralMoveAngle += 10.f;
+		if (m_spiralMoveRadius > maxWindow.x / 10.f) {
+			m_spiralRadiusDir = -1.f;
+		}
+		else if (m_spiralMoveRadius < 1.f) {
+			m_spiralRadiusDir = 1.f;
+		}
+
+		if (m_rotated) {
+			AddRotateAngle(3.f);
+		}
+		m_spiralMoveRadius += m_spiralRadiusDir * 0.3f;
+	}
+}
+
+void Triangle::RotateWhileMove() {
+	m_rotated = true;
+}
+
+void Triangle::MoveWhile(float deltaTime, const Vec3F& end) {
+	if (m_moveWhileVar <= 1.f) {
+		m_origin.x = (1 - m_moveWhileVar) * m_moveWhileSt.x + m_moveWhileVar * end.x;
+		m_origin.y = (1 - m_moveWhileVar) * m_moveWhileSt.y + m_moveWhileVar * end.y;
+	}
+	else {
+		m_moveWhile = false;
+		m_origin = end;
+		m_moveWhileSt = end;
+		m_moveWhileVar = 0.f;
+		if (m_moveVec == MoveDir::left) {
+			m_moveVec = MoveDir::down;
+			prevMoveY = MoveDir::up;
+			prevMoveX = MoveDir::left;
+			m_outCountY += 1;
+		}
+		else if (m_moveVec == MoveDir::right) {
+			m_moveVec = MoveDir::up;
+			prevMoveY = MoveDir::down;
+			prevMoveX = MoveDir::right;
+			m_outCountY += 1;
+		}
+		else if (m_moveVec == MoveDir::up) {
+			m_moveVec = MoveDir::left;
+			prevMoveY = MoveDir::down;
+			prevMoveX = MoveDir::left;
+			m_outCountX += 1;
+		}
+		else if (m_moveVec == MoveDir::down) {
+			m_moveVec = MoveDir::right;
+			prevMoveY = MoveDir::up;
+			prevMoveX = MoveDir::right;
+			m_outCountX += 1;
+		}
+	}
+	m_moveWhileVar += 0.001;
+}
+
 void Triangle::Update(float deltaTime) {
-	
+
 }
 
 void Triangle::Render(Mesh* mesh) {
-	mesh->SetDrawMode(m_drawMode); 
+	mesh->SetDrawMode(m_drawMode);
 
 	Vec3F drawVec[3]{ };
 	for (int i = 0; i < 3; ++i) {

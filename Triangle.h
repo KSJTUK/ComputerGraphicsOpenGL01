@@ -45,6 +45,7 @@ public:
 	bool OutY(const Vec3F& minWindow, const Vec3F& maxWindow);
 
 private:
+
 	bool rateMove{ false };
 	int m_moveState{ 0 };
 	float timeRate{ 0.5f };
@@ -53,13 +54,30 @@ private:
 	Vec3F prevMoveY{ };
 	Vec3F prevMoveDir{ };
 	Vec3F rateMoveVec{ MoveDir::down };
+
 	float m_moveSpeed{ 150.f };
+	float m_spiralMoveAngle{ };
+	float m_spiralMoveRadius{ };
+	float m_spiralRadiusDir{ 1.f };
+
+	float m_moveWhileVar{ };
+	Vec3F m_moveWhileSt{ };
+	bool m_moveWhile{ false };
+
+	int m_outCountX{ };
+	int m_outCountY{ };
+	bool m_rotated{ true };
 
 public:
+	void ResetSpecialMoveVariables(int moveState, const Vec3F& minWindow, const Vec3F& maxWindow);
 	void Move(float deltaTime);
 	void MoveToState(int moveState, float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow);
 	void MoveZig(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow);
 	void MovePingPong(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow);
+	void MoveRectSpiral(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWIndow);
+	void MoveSpiral(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow);
+	void RotateWhileMove();
+	void MoveWhile(float deltaTime, const Vec3F& end);
 
 public:
 	void Update(float deltaTime);
