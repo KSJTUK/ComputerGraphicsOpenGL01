@@ -81,6 +81,9 @@
     <ClCompile Include="Spiral.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -125,9 +128,6 @@
     <ClInclude Include="solution6.h">
       <Filter>헤더 파일\Solution</Filter>
     </ClInclude>
-    <ClInclude Include="solution11.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>헤더 파일\Object</Filter>
     </ClInclude>
@@ -142,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="solution10.h">
       <Filter>헤더 파일\Solution</Filter>
+    </ClInclude>
+    <ClInclude Include="solution11.h">
+      <Filter>헤더 파일\Solution</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

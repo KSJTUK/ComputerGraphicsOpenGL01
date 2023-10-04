@@ -10,6 +10,9 @@ struct Vec3F {
 	Vec3F Rotate(float rotateAngle);
 	Vec3F Move(const Vec3F& moveVec);
 	Vec3F ToGLCoordinate();
+	float t{ };
+	float timeCount{ };
+	void MoveWhile(float deltaTime, float timeRate, const Vec3F& end);
 
 	float operator[](size_t);
 
@@ -25,6 +28,15 @@ struct Vec3F {
 	float x{ };
 	float y{ };
 	float z{ };
+	
+
+	float moveStartX{ };
+	float moveStartY{ };
+	float moveStartZ{ };
+
+	float moveEndX{ };
+	float moveEndY{ };
+	float moveEndZ{ };
 };
 
 struct Color3F {

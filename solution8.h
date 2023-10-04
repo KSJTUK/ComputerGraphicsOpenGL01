@@ -6,6 +6,7 @@
 #include "Line.h"
 #include "Point.h"
 #include "Triangle.h"
+#include "Mesh.h"
 #include "types.h"
 #include "pch.h"
 #include <list>

@@ -55,6 +55,28 @@ Triangle::Triangle(const Vec3F* positions, const Color3F* colors) {
 	m_drawMode = GL_TRIANGLES;
 }
 
+Triangle::Triangle(const Triangle& other) : Object{ other } {
+	for (int i = 0; i < 3; ++i) {
+		m_originPoints[i] = other.m_originPoints[i];
+		m_vertexColor[i] = other.m_vertexColor[i];
+	}
+}
+
+Triangle& Triangle::operator=(const Triangle& other) {
+	m_origin = other.m_origin;
+	m_drawMode = other.m_drawMode;
+	m_size = other.m_size;
+	m_moveSpeed = other.m_moveSpeed;
+	m_rotateAngle = other.m_rotateAngle;
+	m_tag = other.m_tag;
+
+	for (int i = 0; i < 3; ++i) {
+		m_originPoints[i] = other.m_originPoints[i];
+		m_vertexColor[i] = other.m_vertexColor[i];
+	}
+	return *this;
+}
+
 Vec3F Triangle::GetGravityPoint(const Vec3F* vectors) {
 	Vec3F rtVec{ };
 	for (int i = 0; i < 3; ++i) {
@@ -187,13 +209,13 @@ void Triangle::ResetSpecialMoveVariables(int moveState, const Vec3F& minWindow, 
 		prevMoveX = MoveDir::left;
 		rateMove = false;
 		rateMoveVec = MoveDir::null;
-		timeRate = 0.f;
 		m_moveWhileSt = m_origin;
 	}
 	else if (moveState == 2) {
 		m_origin = { GetRandomF(-200.f, 200.f), GetRandomF(-200.f, 200.f), 0.f};
 		float r = GetRandomF(0.f, 2.f);
 		m_moveVec = r <= 1.f ? MoveDir::left : MoveDir::right;
+		rateMoveVec = MoveDir::down;
 	}
 	else if (moveState == 1) {
 		float r = GetRandomF(0.f, 2.f);
@@ -418,6 +440,14 @@ void Triangle::MoveWhile(float deltaTime, const Vec3F& end) {
 		}
 	}
 	m_moveWhileVar += 0.001;
+}
+
+void Triangle::MoveWhileVertex(float deltaTime, float timeRate, const Vec3F& end, int index) {
+	m_originPoints[index].MoveWhile(deltaTime, timeRate, end);
+}
+
+void Triangle::SetVertexPoint(const Vec3F& point, int index) {
+	m_originPoints[index] = point;
 }
 
 void Triangle::Update(float deltaTime) {

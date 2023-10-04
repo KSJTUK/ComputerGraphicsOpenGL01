@@ -16,6 +16,9 @@ public:
 	Triangle(const Vec3F& position, const Size3F& size, const Color3F* colors);
 	Triangle(const Vec3F* positions, const Color3F* colors);
 
+	Triangle(const Triangle& other);
+	Triangle& operator=(const Triangle& other);
+
 protected:
 	Color3F m_vertexColor[3]{ { 1.f, 0.f, 0.f }, { 0.f, 1.f, 0.f }, { 0.f, 0.f, 1.f } };
 	Vec3F m_originPoints[3]{ };
@@ -35,6 +38,8 @@ public:
 	void SetMoveVec(const Vec3F& moveVec) { m_moveVec = moveVec; }
 	void SetMoveSpeed(const float moveSpeed) { m_moveSpeed = moveSpeed;  }
 	Vec3F GetMoveVec() { return m_moveVec; }
+	Color3F GetColor() { return m_vertexColor[0]; };
+	Vec3F GetOriginPoint() { return m_origin; }
 
 public:
 	bool IsInBox(const Vec3F& lt, const Vec3F& rb);
@@ -78,6 +83,10 @@ public:
 	void MoveSpiral(float deltaTime, const Vec3F& minWindow, const Vec3F& maxWindow);
 	void RotateWhileMove();
 	void MoveWhile(float deltaTime, const Vec3F& end);
+
+	void MoveWhileVertex(float deltaTime, float timeRate, const Vec3F& end, int index);
+	void SetVertexPoint(const Vec3F& point, int index);
+	Vec3F GetVertexPoint(int index) { return m_originPoints[index]; };
 
 public:
 	void Update(float deltaTime);

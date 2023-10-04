@@ -38,7 +38,7 @@ namespace solution10 {
 
 		for (int i = 0; i < loopSize; ++i) {
 			spiralList.push_back(new Spiral{ GetRandomVec3F(minWindow.x + 100.f, minWindow.y + 100.f, maxWindow.x - 100.f, maxWindow.y - 100.f),
-				static_cast<size_t>(GetRandomInt(1, 11) * 20), 2.f, GetRandomInt(0, 1), GetRandomInt(0, 1) });
+				static_cast<size_t>(GetRandomInt(1, 12) * 20), 2.f, GetRandomInt(0, 1), GetRandomInt(0, 1) });
 			spiralList.back()->SetColorRandom();
 		}
 	}
@@ -129,8 +129,8 @@ namespace solution10 {
 		float deltaTime = e.GetDeltaTime();
 		for (auto& e : spiralList) {
 			e->Update(deltaTime);
+			e->SetColorRandom(deltaTime);
 		}
-		
 
 		glutPostRedisplay();
 	}

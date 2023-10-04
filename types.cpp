@@ -42,7 +42,26 @@ Vec3F Vec3F::ToGLCoordinate() {
 	return rtVec;
 }
 
-float Vec3F::operator[](size_t index) 
+void Vec3F::MoveWhile(float deltaTime, float timeRate, const Vec3F& end) {
+	timeCount += deltaTime;
+	if (t <= 1.f) {
+		if (timeRate < timeCount) {
+			timeCount = 0.f;
+			x = (1 - t) * (moveStartX) + (t * end.x);
+			y = (1 - t) * (moveStartY) + (t * end.y);
+			t += 0.01;
+		}
+	}
+	else {
+		moveStartX = end.x;
+		moveStartY = end.y;
+		x = end.x;
+		y = end.y;
+		t = 0.f;
+	}
+}
+
+float Vec3F::operator[](size_t index)
 {
 	if (index == 0) {
 		return x;

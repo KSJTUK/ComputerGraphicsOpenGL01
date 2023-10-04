@@ -8,7 +8,7 @@
 extern Engine e;
 
 Spiral::Spiral(const Vec3F& origin, size_t numOfPoint, float radiusStep, int revRad, int revAngle) : m_numOfPoints{ numOfPoint }, m_endDraw{ numOfPoint } {
-	m_drawMode = GL_LINE_STRIP;
+	m_drawMode = GL_POINTS;
 	m_origin = origin;
 	m_prevOrigin = { };
 	Color3F color{ Colors::white };
@@ -70,6 +70,7 @@ Spiral::Spiral(const Vec3F& origin, size_t numOfPoint, float radiusStep, int rev
 }
 
 Spiral::~Spiral() {
+	SafeDeleteArrayPointer(m_vertexBuffer);
 }
 
 void Spiral::Init() {
@@ -90,6 +91,19 @@ void Spiral::SetColorRandom() {
 		for (int c = 3; c < 6; ++c) {
 			Color3F color = GetRandomColor3F(0.f, 1.f);
 			m_vertexBuffer[i * 6 + c] = color[c % 3];
+		}
+	}
+}
+
+void Spiral::SetColorRandom(float deltaTime) {
+	m_colorTimeCount += deltaTime;
+	if (m_colorTimeRate < m_colorTimeCount) {
+		m_colorTimeCount = 0.f;
+		for (int i = 0; i < m_numOfPoints; ++i) {
+			for (int c = 3; c < 6; ++c) {
+				Color3F color = GetRandomColor3F(0.f, 1.f);
+				m_vertexBuffer[i * 6 + c] = color[c % 3];
+			}
 		}
 	}
 }

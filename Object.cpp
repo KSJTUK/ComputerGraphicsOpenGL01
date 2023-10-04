@@ -21,6 +21,15 @@ Object::Object(const Vec3F& position, const Size3F& size) {
 	m_size.z = size.z;
 }
 
+Object::Object(const Object& other) {
+	m_origin = other.m_origin;
+	m_drawMode = other.m_drawMode;
+	m_size = other.m_size;
+	m_moveSpeed = other.m_moveSpeed;
+	m_rotateAngle = other.m_rotateAngle;
+	m_tag = other.m_tag;
+}
+
 void Object::SetMoveSpeed(float speed) {
 	m_moveSpeed = speed;
 }

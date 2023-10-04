@@ -25,8 +25,8 @@ private:
 	float m_angle{ };
 	
 	float m_timeCount{ };
-	float m_timeRateDraw{ 0.05f };
-	float m_timeRateDelete{ 0.05f };
+	float m_timeRateDraw{ 0.03f };
+	float m_timeRateDelete{ 0.03f };
 
 	float m_radiusDir{ 1.f };
 	float m_angleDir{ 1.f };
@@ -38,10 +38,13 @@ private:
 	size_t m_endDraw{ };
 
 	int m_drawMode{ };
+	float m_colorTimeRate{ 0.15f };
+	float m_colorTimeCount{ };
 
 public:
 	void SetColor(const Color3F& color);
 	void SetColorRandom();
+	void SetColorRandom(float deltaTime);
 	void DrawPoint();
 	void DrawLine();
 

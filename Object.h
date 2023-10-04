@@ -11,6 +11,7 @@ public:
 
 	Object(float x, float y, float z, float sizeX, float sizeY, float sizeZ);
 	Object(const Vec3F& position, const Size3F& size);
+	Object(const Object& other);
 
 protected:
 	// 중심점 x, y
@@ -23,6 +24,7 @@ protected:
 	float m_rotateAngle{ };
 	unsigned int m_drawMode{ };
 	float m_moveSpeed{ 10.f };
+	int m_vertexSize{ };
 
 	std::string m_tag{ };
 
@@ -31,6 +33,7 @@ public:
 	virtual void SetDrawMode(int drawMode) = 0;
 	void SetMoveSpeed(float speed);
 	void SetOriginPoint(const Vec3F& setPt);
+	int GetVertexSize() const { return m_vertexSize; }
 
 public:
 	void Move(const Vec3F& moveDir);

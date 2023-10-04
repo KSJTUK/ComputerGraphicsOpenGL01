@@ -4,12 +4,26 @@
 #include "constants.h"
 #include "ShapeManager.h"
 #include "Point.h"
+#include "Mesh.h"
 #include "Triangle.h"
+#include "Polygon.h"
 #include "types.h"
 #include "pch.h"
+#include <vector>
 
-namespace solution7 {
-	Engine e{ };
+extern Engine e;
+
+namespace solution11 {
+	Vec3F minWindow{ };
+	Vec3F maxWindow{ };
+
+	Mesh* renderer{ };
+	PolygonF* polygon{ };
+
+
+	void DrawAll();
+
+	void Init();
 
 	// 그리기 콜백함수
 	void renderFunc();
@@ -39,8 +53,23 @@ namespace solution7 {
 	// 마우스 휠 입력함수
 	void mouseWheel(int, int, int);
 
-	void solution7(int* argc, char** argv) {
+	void solution(int* argc, char** argv) {
 		e.Init(argc, argv);
+
+		float width = e.GetWindowWidthF();
+		float height = e.GetWindowHeightF();
+		minWindow = { -width / 2.f, -height / 2.f, 0.f };
+		maxWindow = { width / 2.f, height / 2.f, 0.f };
+
+		renderer = e.GetShapeManager()->GetMesh();
+		polygon = new PolygonF{ Vec3F{ 0.f, 0.f, 0.f }, 100.f, 1 };
+
+		e.SubscribeDrawFunc(solution11::renderFunc);
+		e.SubscribeReshapeFunc(solution11::reshapeFunc);
+		e.SubscribeMouseFunc(solution11::mouseFunc);
+		e.SubscribeIdleFUnc(solution11::idleFunc);
+		e.SubscribeKeyboardFunc(solution11::keyboardFunc);
+		e.SubscribeKeyboardUpfunc(solution11::keyboardUpFunc);
 
 		e.Loop();
 	}
@@ -54,6 +83,7 @@ namespace solution7 {
 
 		// rendering function
 		e.Render();
+		polygon->Render(renderer);
 
 		glutSwapBuffers();
 	}
@@ -62,6 +92,11 @@ namespace solution7 {
 	{
 		e.SetWindowSize(x, y);
 
+		float width = e.GetWindowWidthF();
+		float height = e.GetWindowHeightF();
+		minWindow = { -width / 2.f, -height / 2.f, 0.f };
+		maxWindow = { width / 2.f, height / 2.f, 0.f };
+
 		glViewport(0, 0, x, y);
 	}
 
@@ -69,6 +104,8 @@ namespace solution7 {
 	{
 		// Frame객체의 Update함수 사용
 		e.Update();
+		float deltaTime = e.GetDeltaTime();
+
 		glutPostRedisplay();
 	}
 
@@ -108,6 +145,15 @@ namespace solution7 {
 	}
 
 	void mouseWheel(int dir, int x, int y)
+	{
+	}
+
+	void Init()
+	{
+		
+	}
+
+	void DrawAll()
 	{
 	}
 
