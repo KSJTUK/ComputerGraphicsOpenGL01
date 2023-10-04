@@ -18,7 +18,7 @@ namespace solution9 {
 	Vec3F maxWindow{ };
 	Mesh* renderer{ };
 	std::list<Triangle*> triangleList{ };
-	Spiral* s{ };
+	int moveState{ };
 
 	// 그리기 콜백함수
 	void renderFunc();
@@ -68,8 +68,10 @@ namespace solution9 {
 
 		renderer = e.GetShapeManager()->GetMesh();
 
-		triangleList.push_back(new Triangle{ Vec3F{ }, GetRandomVec3F(100.f, 0.f, 100.f, 0.f), Colors::red });
-		s = new Spiral{ Vec3F{ }, 60, 2 };
+		triangleList.push_back(new Triangle{ Vec3F{ maxWindow.x / 2.f, maxWindow.y / 2.f, 0.f }, GetRandomVec3F(100.f, 0.f, 200.f, 0.f), GetRandomColor3F(0.f, 1.f) });
+		triangleList.push_back(new Triangle{ Vec3F{ minWindow.x / 2.f, maxWindow.y / 2.f, 0.f }, GetRandomVec3F(100.f, 0.f, 200.f, 0.f), GetRandomColor3F(0.f, 1.f) });
+		triangleList.push_back(new Triangle{ Vec3F{ minWindow.x / 2.f, minWindow.y / 2.f, 0.f }, GetRandomVec3F(100.f, 0.f, 200.f, 0.f), GetRandomColor3F(0.f, 1.f) });
+		triangleList.push_back(new Triangle{ Vec3F{ maxWindow.x / 2.f, minWindow.y / 2.f, 0.f }, GetRandomVec3F(100.f, 0.f, 200.f, 0.f), GetRandomColor3F(0.f, 1.f) });
 
 		e.Loop();
 	}
@@ -83,7 +85,6 @@ namespace solution9 {
 
 		// rendering function
 		e.Render();
-		s->Render(renderer);
 		for (auto& e : triangleList) {
 			e->Render(renderer);
 		}
@@ -108,7 +109,7 @@ namespace solution9 {
 		e.Update();
 		float deltaTime = e.GetDeltaTime();
 		for (auto& e : triangleList) {
-			MoveToState(e, 3, deltaTime);
+			MoveToState(e, moveState, deltaTime);
 		}
 		glutPostRedisplay();
 	}
@@ -116,7 +117,23 @@ namespace solution9 {
 
 	void keyboardFunc(unsigned char key, int x, int y)
 	{
+		switch (key) {
+		case '1':
+			moveState = 1;
+			break;
 
+		case '2':
+			moveState = 2;
+			break;
+
+		case '3':
+			moveState = 3;
+			break;
+
+		case '4':
+			moveState = 4;
+			break;
+		}
 	}
 
 	void keyboardUpFunc(unsigned char key, int x, int y)

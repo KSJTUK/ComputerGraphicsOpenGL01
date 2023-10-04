@@ -48,7 +48,7 @@ private:
 
 	bool rateMove{ false };
 	int m_moveState{ 0 };
-	float timeRate{ 0.5f };
+	float timeRate{ 1.f };
 	float moveTime{ };
 	Vec3F prevMoveX{ };
 	Vec3F prevMoveY{ };

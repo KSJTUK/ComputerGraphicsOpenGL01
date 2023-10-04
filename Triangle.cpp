@@ -139,11 +139,11 @@ bool Triangle::OutX(const Vec3F& minWindow, const Vec3F& maxWindow) {
 		drawVec[i] = m_originPoints[i].Rotate(m_rotateAngle);
 		drawVec[i] = drawVec[i] + m_origin;
 		if (drawVec[i].x < minWindow.x) {
-			m_origin.x += 1.f;
+			m_origin.x += 10.f;
 			return true;
 		}
 		else if (drawVec[i].x > maxWindow.x) {
-			m_origin.x -= 1.f;
+			m_origin.x -= 10.f;
 			return true;
 		}
 	}
@@ -156,11 +156,11 @@ bool Triangle::OutY(const Vec3F& minWindow, const Vec3F& maxWindow) {
 		drawVec[i] = m_originPoints[i].Rotate(m_rotateAngle);
 		drawVec[i] = drawVec[i] + m_origin;
 		if (drawVec[i].y < minWindow.y) {
-			m_origin.y += 1.f;
+			m_origin.y += 10.f;
 			return true;
 		}
 		else if (drawVec[i].y > maxWindow.y) {
-			m_origin.y -= 1.f;
+			m_origin.y -= 10.f;
 			return true;
 		}
 	}
@@ -177,10 +177,12 @@ void Triangle::ResetSpecialMoveVariables(int moveState, const Vec3F& minWindow, 
 	m_spiralMoveAngle = 0.f;
 	m_spiralMoveRadius = 0.f;
 	m_spiralRadiusDir = 1.f;
+	m_rotateAngle = 0.f;
+	m_moveSpeed = GetRandomF(100.f, 300.f);
 	if (moveState == 3) {
 		m_outCountX = 1;
 		m_outCountY = 1;
-		m_origin = { 0.f, maxWindow.y - ((m_size.x / 2.f)) * m_outCountY, 0.f };
+		m_origin = { GetRandomF(-200.f, 200.f), maxWindow.y - ((m_size.x / 2.f)) * m_outCountY, 0.f};
 		m_moveVec = MoveDir::left;
 		prevMoveX = MoveDir::left;
 		rateMove = false;
@@ -188,8 +190,14 @@ void Triangle::ResetSpecialMoveVariables(int moveState, const Vec3F& minWindow, 
 		timeRate = 0.f;
 		m_moveWhileSt = m_origin;
 	}
-	else {
-		m_origin = { };
+	else if (moveState == 2) {
+		m_origin = { GetRandomF(-200.f, 200.f), GetRandomF(-200.f, 200.f), 0.f};
+		float r = GetRandomF(0.f, 2.f);
+		m_moveVec = r <= 1.f ? MoveDir::left : MoveDir::right;
+	}
+	else if (moveState == 1) {
+		float r = GetRandomF(0.f, 2.f);
+		m_moveVec = r <= 1.f ? MoveDir::rightDown : MoveDir::leftDown;
 	}
 }
 
