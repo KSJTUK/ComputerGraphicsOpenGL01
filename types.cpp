@@ -110,6 +110,12 @@ Color3F GetRandomColor3F(float min, float max) {
 	return Color3F{ urd(Random::dre), urd(Random::dre), urd(Random::dre) };
 }
 
+int GetRandomInt(int min, int max) 
+{
+	std::uniform_int_distribution<> uid{ min, max };
+	return uid(Random::dre);
+}
+
 void SafeDeletePointer(void* pointer)
 {
 	if (pointer) delete pointer;

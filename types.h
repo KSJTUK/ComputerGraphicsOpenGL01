@@ -48,6 +48,7 @@ struct Vertex {
 
 Vec3F GetRandomVec3F(float minX, float minY, float maxX, float maxY);
 Color3F GetRandomColor3F(float min, float max);
+int GetRandomInt(int min, int max);
 
 // 유용한 함수들 정의
 void SafeDeletePointer(void* pointer);

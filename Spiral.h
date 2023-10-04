@@ -42,6 +42,8 @@ private:
 public:
 	void SetColor(const Color3F& color);
 	void SetColorRandom();
+	void DrawPoint();
+	void DrawLine();
 
 public:
 	void Update(float deltaTime);

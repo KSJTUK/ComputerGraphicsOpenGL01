@@ -94,6 +94,14 @@ void Spiral::SetColorRandom() {
 	}
 }
 
+void Spiral::DrawPoint() {
+	m_drawMode = GL_POINTS;
+}
+
+void Spiral::DrawLine() {
+	m_drawMode = GL_LINE_STRIP;
+}
+
 void Spiral::Update(float deltaTime) {
 	if (m_prevOrigin != m_origin) {
 		Vec3F origin = m_origin.ToGLCoordinate();

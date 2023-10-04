@@ -1,6 +1,7 @@
 ﻿#include "solution6.h"
 #include "solution8.h"
 #include "solution9.h"
+#include "solution10.h"
 
 #include <crtdbg.h>
 #include <assert.h>
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
 {
 	SDF;
 
-	solution9::solution(&argc, argv);
+	solution10::solution(&argc, argv);
 
 	return 0;
 }
