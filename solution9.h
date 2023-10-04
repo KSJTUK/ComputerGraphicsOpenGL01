@@ -5,6 +5,7 @@
 #include "ShapeManager.h"
 #include "Line.h"
 #include "Point.h"
+#include "Spiral.h"
 #include "Triangle.h"
 #include "types.h"
 #include "pch.h"
@@ -17,6 +18,7 @@ namespace solution9 {
 	Vec3F maxWindow{ };
 	Mesh* renderer{ };
 	std::list<Triangle*> triangleList{ };
+	Spiral* s{ };
 
 	// 그리기 콜백함수
 	void renderFunc();
@@ -67,6 +69,7 @@ namespace solution9 {
 		renderer = e.GetShapeManager()->GetMesh();
 
 		triangleList.push_back(new Triangle{ Vec3F{ }, GetRandomVec3F(100.f, 0.f, 100.f, 0.f), Colors::red });
+		s = new Spiral{ Vec3F{ }, 60, 2 };
 
 		e.Loop();
 	}
@@ -80,7 +83,7 @@ namespace solution9 {
 
 		// rendering function
 		e.Render();
-
+		s->Render(renderer);
 		for (auto& e : triangleList) {
 			e->Render(renderer);
 		}

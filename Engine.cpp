@@ -88,7 +88,7 @@ void Engine::Init(int* argc, char** argv) {
 	// 쉐이프 매니저 초기화
 	m_shapeManager = new ShapeManager{ };
 
-	glPointSize(3.f);
+	glPointSize(4.f);
 }
 
 void Engine::ReSizeWindow(int w, int h) {
@@ -101,8 +101,6 @@ void Engine::ReSizeWindow(int w, int h) {
 void Engine::Update() {
 	m_timer->Update();
 	m_deltaTime = m_timer->GetDeltaTime();
-	std::cout << m_deltaTime << std::endl;
-	std::cout << m_timer->GetFrame() << std::endl;
 	m_shapeManager->Update(m_deltaTime);
 }
 

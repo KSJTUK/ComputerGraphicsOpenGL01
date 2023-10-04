@@ -42,6 +42,19 @@ Vec3F Vec3F::ToGLCoordinate() {
 	return rtVec;
 }
 
+float Vec3F::operator[](size_t index) 
+{
+	if (index == 0) {
+		return x;
+	}
+	else if (index == 1) {
+		return y;
+	}
+	else {
+		return z;
+	}
+}
+
 Vec3F Vec3F::operator-(const Vec3F& rhs) const {
 	Vec3F rtVec{
 		x - rhs.x,
@@ -132,4 +145,16 @@ Color3F& Color3F::operator=(const Color3F& other) {
 	g = other.g;
 	b = other.b;
 	return *this;
+}
+
+float Color3F::operator[](size_t index) const {
+	if (index == 0) {
+		return r;
+	}
+	else if (index == 1) {
+		return g;
+	}
+	else {
+		return b;
+	}
 }

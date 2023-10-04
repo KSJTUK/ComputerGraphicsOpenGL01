@@ -11,6 +11,8 @@ struct Vec3F {
 	Vec3F Move(const Vec3F& moveVec);
 	Vec3F ToGLCoordinate();
 
+	float operator[](size_t);
+
 	Vec3F operator-(const Vec3F& rhs) const;
 	Vec3F operator+(const Vec3F& rhs) const;
 
@@ -31,6 +33,7 @@ struct Color3F {
 	Color3F(float r, float g, float b) : r{ r }, g{ g }, b{ b } { }
 	Color3F(const Color3F& other) : r{ other.r }, g{ other.g }, b{ other.b } { }
 	Color3F& operator=(const Color3F& other);
+	float operator[](size_t index) const;
 	float r{ };
 	float g{ };
 	float b{ };

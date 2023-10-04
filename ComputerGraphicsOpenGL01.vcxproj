@@ -140,6 +140,7 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShapeManager.cpp" />
+    <ClCompile Include="Spiral.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="types.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="solution6.h" />
     <ClInclude Include="solution8.h" />
     <ClInclude Include="solution9.h" />
+    <ClInclude Include="Spiral.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="types.h" />
