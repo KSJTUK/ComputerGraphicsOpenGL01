@@ -15,6 +15,7 @@ private:
 	unsigned int m_elemetBufferObject{ };
 
 	unsigned int m_vertexSize{ };
+	unsigned int m_indexBufferSize{ };
 
 	// 그리기 모드 점, 선, 삼각형 등
 	// default값은 삼각형(생성자에서 설정)

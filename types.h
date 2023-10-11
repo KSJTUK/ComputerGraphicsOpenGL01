@@ -10,8 +10,10 @@ struct Vec3F {
 	Vec3F Rotate(float rotateAngle);
 	Vec3F Move(const Vec3F& moveVec);
 	Vec3F ToGLCoordinate();
+
 	float t{ };
 	float timeCount{ };
+	void SetMoveStart(Vec3F& moveStart);
 	void MoveWhile(float deltaTime, float timeRate, const Vec3F& end);
 
 	float operator[](size_t);

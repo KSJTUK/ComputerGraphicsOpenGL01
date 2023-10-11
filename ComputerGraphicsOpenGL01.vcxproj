@@ -161,6 +161,8 @@
     <ClInclude Include="ShapeManager.h" />
     <ClInclude Include="solution10.h" />
     <ClInclude Include="solution11.h" />
+    <ClInclude Include="solution12.h" />
+    <ClInclude Include="solution13.h" />
     <ClInclude Include="solution6.h" />
     <ClInclude Include="solution8.h" />
     <ClInclude Include="solution9.h" />

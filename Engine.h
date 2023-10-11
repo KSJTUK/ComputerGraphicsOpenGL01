@@ -40,6 +40,8 @@ public:
 	void SubscribeIdleFUnc(void(*func)(void));
 	void SubscribeReshapeFunc(void(*func)(int, int));
 	void SubscribeMouseFunc(void(*func)(int, int, int, int));
+	void SubscribeMouseMotionFunc(void(*func)(int, int));
+	void SubscribePassiveMotionFunc(void(*func)(int, int));
 	void SubscribeKeyboardFunc(void(*func)(unsigned char, int, int));
 	void SubscribeKeyboardUpfunc(void(*func)(unsigned char, int, int));
 

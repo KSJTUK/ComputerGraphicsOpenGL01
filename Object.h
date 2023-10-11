@@ -30,10 +30,12 @@ protected:
 
 public:
 	std::string GetObjectTag() const { return m_tag; }
-	virtual void SetDrawMode(int drawMode) = 0;
+	int GetVertexSize() const { return m_vertexSize; }
+
 	void SetMoveSpeed(float speed);
 	void SetOriginPoint(const Vec3F& setPt);
-	int GetVertexSize() const { return m_vertexSize; }
+
+	virtual void SetDrawMode(int drawMode) = 0;
 
 public:
 	void Move(const Vec3F& moveDir);

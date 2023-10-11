@@ -25,8 +25,8 @@ private:
 	float m_angle{ };
 	
 	float m_timeCount{ };
-	float m_timeRateDraw{ 0.03f };
-	float m_timeRateDelete{ 0.03f };
+	float m_timeRateDraw{ 0.1f };
+	float m_timeRateDelete{ 0.1f };
 
 	float m_radiusDir{ 1.f };
 	float m_angleDir{ 1.f };

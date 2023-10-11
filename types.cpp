@@ -9,6 +9,8 @@ Vec3F& Vec3F::operator=(const Vec3F& other) {
 	x = other.x;
 	y = other.y;
 	z = other.z;
+	moveStartX = x;
+	moveStartY = y;
 	return *this;
 }
 
@@ -40,6 +42,11 @@ Vec3F Vec3F::ToGLCoordinate() {
 		z
 	};
 	return rtVec;
+}
+
+void Vec3F::SetMoveStart(Vec3F& moveStart) {
+	moveStartX = moveStart.x;
+	moveStartY = moveStart.y;
 }
 
 void Vec3F::MoveWhile(float deltaTime, float timeRate, const Vec3F& end) {
@@ -149,12 +156,12 @@ void SafeDeleteArrayPointer(void* pointer)
 
 int winXToGLX(int x)
 {
-	return x - (int)e.GetWindowWidth() / 2;
+	return x - ((int)e.GetWindowWidth() / 2);
 }
 
 int winYToGLY(int y)
 {
-	return -(y - (int)e.GetWindowHeight() / 2);
+	return -(y - ((int)e.GetWindowHeight() / 2));
 }
 
 bool isInBox(const Vec3F& pos, const Vec3F& lt, const Vec3F& rb)
@@ -183,3 +190,9 @@ float Color3F::operator[](size_t index) const {
 		return b;
 	}
 }
+
+int crossOp(const Vec3F& v1, const Vec3F& v2)
+{
+	return (v1.x * v2.x) + (v1.y * v2.y);
+}
+

@@ -56,6 +56,7 @@ void Engine::Init(int* argc, char** argv) {
 
 	// 윈도우 출력모드 설정(더블버퍼링, RGBA)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+
 	// 윈도우 크기, 좌표 설정
 	glutInitWindowPosition(m_windowInfo.x, m_windowInfo.y);
 	glutInitWindowSize(m_windowInfo.width, m_windowInfo.height);
@@ -113,6 +114,10 @@ ShapeManager* Engine::GetShapeManager() const {
 	return m_shapeManager;
 }
 
+void Engine::SubscribeMouseMotionFunc(void(*func)(int, int)) {
+	glutMotionFunc(func);
+}
+
 void Engine::SubscribeDrawFunc(void(*func)(void)) {
 	glutDisplayFunc(func);
 }
@@ -123,6 +128,10 @@ void Engine::SubscribeMouseFunc(void(*func)(int, int, int, int)) {
 
 void Engine::SubscribeKeyboardUpfunc(void(*func)(unsigned char, int, int)) {
 	glutKeyboardUpFunc(func);
+}
+
+void Engine::SubscribePassiveMotionFunc(void(*func)(int, int)) {
+	glutPassiveMotionFunc(func);
 }
 
 void Engine::SubscribeKeyboardFunc(void(*func)(unsigned char, int, int)) {
